@@ -1,9 +1,9 @@
-import Chat from "../chat/Chat";
+import ChatContainer from "../../containers/ChatContainer";
 
 const MainPage = () => {
   return (
     <div>
-      <Chat/>
+      <ChatContainer/>
     </div>
   );
 };

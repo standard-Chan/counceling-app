@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
@@ -29,12 +29,19 @@ const response = {
   ],
 };
 */
+const ChatBody = ({ responseMessages, onSubmit }) => {
+  const [ids, setIds] = useState([]);
+  const [messages, setMessages] = useState({});
 
-const ChatBody = ({ messages, response, onSubmit }) => {
+  useEffect(() => {
+    setIds(responseMessages.ids);
+    setMessages(responseMessages.messages);
+  }, [responseMessages]);
+  
   return (
     <ChatBodyContainer>
-      {response.messages.map((message, index) => (
-        <ChatBubble key={index} sender={message.sender} text={message.text}/>
+      {ids.length !== 0 && ids.map((id) => (
+        <ChatBubble key={id} sender={messages[id].sender} text={messages[id].text}/>
       ))}
       <ChatBubble sender={'user'} text={'끝'}/>
       <ChatInput onSubmit={onSubmit}/>

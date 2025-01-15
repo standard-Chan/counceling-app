@@ -9,10 +9,6 @@
 # testing
 /coverage
 /mock
-<<<<<<< HEAD
-=======
-
->>>>>>> chatUI
 # production
 /build
 
