@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: ${props => props.bgColor || '#908dff'};
+  display: inline-block;
+  background-color: ${props => props.bgColor || '#bbb9f4'};
   color: ${props => props.color || '#ffffff'};
   font-size: ${props => props.fontSize || '16px'};
-  padding: ${props => props.padding || '12px 24px'};
+  padding: ${props => props.padding || '12px 10px'};
   border: none;
+  width: 60px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -23,10 +25,11 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, bgColor, color, fontSize, padding, hoverBgColor, activeBgColor }) => {
+const Button = ({ children, type = 'button', bgColor, color, fontSize, padding, hoverBgColor, activeBgColor }) => {
   return (
     <StyledButton
       bgColor={bgColor}
+      type={type}
       color={color}
       fontSize={fontSize}
       padding={padding}

@@ -23,6 +23,7 @@ const ToastContainer = styled.div`
 `;
 
 const Toast = ({ message, show, duration = 3000, bgColor, color, padding, onClose }) => {
+
   const [visible, setVisible] = useState(show);
 
   useEffect(() => {

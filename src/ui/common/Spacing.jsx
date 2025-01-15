@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledSpacing = styled.div`
-  margin-top: ${props => props.vertical || props.marginTop || '0'};
-  margin-bottom: ${props => props.vertical || props.marginBottom || '0'};
-  margin-left: ${props => props.horizontal || props.marginLeft || '0'};
-  margin-right: ${props => props.horizontal || props.marginRight || '0'};
-  padding-top: ${props => props.paddingTop || '0'};
-  padding-bottom: ${props => props.paddingBottom || '0'};
-  padding-left: ${props => props.paddingLeft || '0'};
-  padding-right: ${props => props.paddingRight || '0'};
+  margin-top: ${props => props['data-margin-top'] || '0'};
+  margin-bottom: ${props => props['data-margin-bottom'] || '0'};
+  margin-left: ${props => props['data-margin-left'] || '0'};
+  margin-right: ${props => props['data-margin-right'] || '0'};
+  padding-top: ${props => props['data-padding-top'] || '0'};
+  padding-bottom: ${props => props['data-padding-bottom'] || '0'};
+  padding-left: ${props => props['data-padding-left'] || '0'};
+  padding-right: ${props => props['data-padding-right'] || '0'};
 `;
 
 const Spacing = ({ 
@@ -27,16 +27,14 @@ const Spacing = ({
 }) => {
   return (
     <StyledSpacing
-      marginTop={top}
-      marginBottom={bottom}
-      marginLeft={left}
-      marginRight={right}
-      paddingTop={paddingTop}
-      paddingBottom={paddingBottom}
-      paddingLeft={paddingLeft}
-      paddingRight={paddingRight}
-      vertical={vertical}
-      horizontal={horizontal}
+      data-margin-top={top || vertical}
+      data-margin-bottom={bottom || vertical}
+      data-margin-left={left || horizontal}
+      data-margin-right={right || horizontal}
+      data-padding-top={paddingTop}
+      data-padding-bottom={paddingBottom}
+      data-padding-left={paddingLeft}
+      data-padding-right={paddingRight}
     >
       {children}
     </StyledSpacing>
