@@ -1,14 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import { FormContext, FormProvider } from "../common/Form";
-import Input from "../common/Input";
-import Button from "../common/Button";
-import Card from "../common/Card";
+import React from 'react';
+import styled from 'styled-components';
+import { FormContext, FormProvider } from '../common/Form';
+import Input from '../common/Input';
+import Button from '../common/Button';
+import Card from '../common/Card';
+import Spacing from '../common/Spacing';
 
 const ChatInputContainer = styled.div`
-  background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 600px;
+  z-index: 1000;
 `;
 
 const ChatInput = ({ onSend, onSubmit }) => {
@@ -17,7 +22,7 @@ const ChatInput = ({ onSend, onSubmit }) => {
       <FormProvider onSubmit={onSubmit}>
         <FormContext.Consumer>
           {({ values, updateValues, reset }) => (
-            <Card>
+            <Card bgColor={'#dcd6f7'} padding={'10px 10px'}>
               <Input
                 name="message"
                 value={values["message"]}
@@ -25,9 +30,8 @@ const ChatInput = ({ onSend, onSubmit }) => {
                 updateValues={updateValues}
                 placeholder="메시지를 입력하세요..."
               />
-              <Button type="submit" onClick={() => {}}>
-                전송
-              </Button>
+              <Spacing left={'10px'}/>
+              <Button type="submit">전송</Button>
             </Card>
           )}
         </FormContext.Consumer>

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ChatBubble from './ChatBubble';
+import ChatInput from './ChatInput';
 
 const ChatBodyContainer = styled.div`
   flex: 1;
@@ -13,20 +15,29 @@ const ChatBodyContainer = styled.div`
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ChatBubble = styled.div`
-  background-color: #ffffff;
-  color: #4a4a4a;
-  padding: 12px 16px;
-  border-radius: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 70%;
-  align-self: ${props => (props.isSender ? 'flex-end' : 'flex-start')};
-`;
+/*
+const response = {
+  messages: [
+    {
+      sender: "user",
+      text: "안녕하세요",
+    },
+    {
+      sender: "bot",
+      text: "안녕하세요. 무엇을 도와드릴까요?",
+    },
+  ],
+};
+*/
 
-const ChatBody = ({ messages }) => {
+const ChatBody = ({ messages, response, onSubmit }) => {
   return (
     <ChatBodyContainer>
-      <ChatBubble sender={'true'} text={'text'}/>
+      {response.messages.map((message, index) => (
+        <ChatBubble key={index} sender={message.sender} text={message.text}/>
+      ))}
+      <ChatBubble sender={'user'} text={'끝'}/>
+      <ChatInput onSubmit={onSubmit}/>
     </ChatBodyContainer>
   );
 };

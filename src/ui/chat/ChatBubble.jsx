@@ -8,12 +8,12 @@ const Bubble = styled.div`
   border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 70%;
-  align-self: ${props => (props['data-is-sender'] ? 'flex-end' : 'flex-start')};
+  align-self: ${props => (props.sender === 'user' ? 'flex-end' : 'flex-start')};
   margin-bottom: 8px;
 `;
 
 const ChatBubble = ({ text, sender }) => {
-  return <Bubble data-is-sender={sender}>{text}</Bubble>;
+  return <Bubble sender={sender}>{text}</Bubble>;
 };
 
 export default ChatBubble;

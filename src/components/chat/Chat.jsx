@@ -6,7 +6,6 @@ import Text from "../../ui/common/Text";
 import Button from "../../ui/common/Button";
 import FormProvider, { FormContext } from "../../ui/common/Form";
 import Card from "../../ui/common/Card";
-import ChatInput from "../../ui/chat/ChatInput";
 import ChatBody from "../../ui/chat/ChatBody";
 
 const ChatContainer = styled.div`
@@ -17,6 +16,19 @@ const ChatContainer = styled.div`
   background-color: #e7e4e799;
 `;
 
+const response = {
+  messages: [
+    {
+      sender: "user",
+      text: "안녕하세요",
+    },
+    {
+      sender: "bot",
+      text: "안녕하세요. 무엇을 도와드릴까요?",
+    },
+  ],
+};
+
 const Chat = () => {
   const onSubmit = (values) => {
     console.log("submit : ", values);
@@ -25,9 +37,7 @@ const Chat = () => {
   return (
     <ChatContainer>
       <Header level={1}>채팅 이름</Header>
-      <ChatBody/>
-      <Text>메세지</Text>
-      <ChatInput onSubmit={onSubmit}/>
+      <ChatBody response={response} onSubmit={onSubmit}/>
     </ChatContainer>
   );
 };

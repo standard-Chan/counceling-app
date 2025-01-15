@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledCard = styled.div`
+  display: flex;
   background-color: ${props => props.bgColor || '#ffffff'};
   border: 1px solid ${props => props.borderColor || '#dcd6f7'};
   border-radius: 12px;
