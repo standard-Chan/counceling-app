@@ -23,10 +23,11 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, bgColor, color, fontSize, padding, hoverBgColor, activeBgColor }) => {
+const Button = ({ children, type = 'button', bgColor, color, fontSize, padding, hoverBgColor, activeBgColor }) => {
   return (
     <StyledButton
       bgColor={bgColor}
+      type={type}
       color={color}
       fontSize={fontSize}
       padding={padding}

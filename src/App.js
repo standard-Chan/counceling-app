@@ -1,9 +1,13 @@
 import './App.css';
+import AppLayout from './components/AppLayout';
+import MainPage from './components/main/MainPage';
+import Button from './ui/common/Button';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <AppLayout>
+      <MainPage />
+    </AppLayout>
   );
 }
 
