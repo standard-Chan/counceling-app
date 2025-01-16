@@ -7,7 +7,7 @@ const ChatContainer = () => {
   const messages = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const setMessage = useCallback(() => {
-    dispatch(requestMessageAction());
+    dispatch(requestMessageAction('userID'));
   }, []);
 
   return (

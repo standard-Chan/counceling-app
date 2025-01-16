@@ -15,36 +15,22 @@ const ChatBodyContainer = styled.div`
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-/*
-const response = {
-  messages: [
-    {
-      sender: "user",
-      text: "안녕하세요",
-    },
-    {
-      sender: "bot",
-      text: "안녕하세요. 무엇을 도와드릴까요?",
-    },
-  ],
-};
-*/
 const ChatBody = ({ responseMessages, onSubmit }) => {
-  const [ids, setIds] = useState([]);
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState([]);
+  const [date, setDate] = useState("20250117");
 
   useEffect(() => {
-    setIds(responseMessages.ids);
-    setMessages(responseMessages.messages);
-  }, [responseMessages]);
+    setMessages(responseMessages.messages[date]);
+  }, [responseMessages, date]);
 
-  console.log(messages);
   
   return (
     <ChatBodyContainer>
-      {ids.length !== 0 && ids.map((id) => (
-        <ChatBubble key={id} sender={messages[id].sender} text={messages[id].text}/>
-      ))}
+      {messages && messages.length > 0 && messages.map((message, index) => {
+        return (
+        <ChatBubble key={index} sender={message.role} text={message.content}/>
+      )}
+      )}
       <ChatBubble sender={'user'} text={'끝'}/>
       <ChatInput onSubmit={onSubmit}/>
     </ChatBodyContainer>

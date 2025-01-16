@@ -7,7 +7,7 @@ import Button from "../../ui/common/Button";
 import FormProvider, { FormContext } from "../../ui/common/Form";
 import Card from "../../ui/common/Card";
 import ChatBody from "../../ui/chat/ChatBody";
-import { gptApi } from "../../lib/Api";
+import { Api } from "../../lib/Api";
 
 const ChatContainer = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const ChatContainer = styled.div`
 
 const Chat = ({setMessage, messages}) => {
   useEffect(() => {
-    gptApi.get("/response").then((response) => {setMessage(response.data)});
+    Api.get("/response").then((response) => {setMessage(response.data)});
   }, []);
 
   const onSubmit = (values) => {
