@@ -26,3 +26,8 @@
     - ChatLoader.js: 채팅 생성 로딩
 
   # components
+
+## OPEN AI 
+  ### PROMPT 개선사항
+  
+  - 사용자의 취향을 고려하여, ex. MBTI 등의 정보를 assistant에 전달하면 더욱 좋은 대화 가능.

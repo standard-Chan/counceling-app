@@ -37,6 +37,8 @@ const ChatBody = ({ responseMessages, onSubmit }) => {
     setIds(responseMessages.ids);
     setMessages(responseMessages.messages);
   }, [responseMessages]);
+
+  console.log(messages);
   
   return (
     <ChatBodyContainer>

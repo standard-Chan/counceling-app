@@ -22,7 +22,7 @@ const StyledInput = styled.input`
 
 const Input = ({
   name,
-  value,
+  value = '',
   updateValues,
   width,
   bgColor,
