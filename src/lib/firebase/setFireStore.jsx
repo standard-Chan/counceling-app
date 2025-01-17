@@ -13,7 +13,7 @@ export const updateDocument = async (documentPath, data) => {
 };
 
 // 특정 문서 경로에 값 추가 함수
-// documentPath: "users/userId", data: {name: "jeong"}
+// documentPath: "users/userId", data: {"20240512": "jeong"}
 export const setDocument = async (documentPath, data) => {
   const docRef = doc(db, documentPath);
   try {

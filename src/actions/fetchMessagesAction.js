@@ -32,6 +32,7 @@ export const fetchMessagesThunk = (values, date) => {
 
       // 6. GPT API 호출
       const gptRequestPayload = convertToGptRequestPayload(updatedMessages);
+      console.log("지피티 페이로드 : ",gptRequestPayload);
       const response = await gptApi(gptRequestPayload).then((response) => response.choices[0].message);
       const responseMessage = {
         "content": response.content,

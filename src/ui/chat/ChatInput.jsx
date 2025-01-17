@@ -17,6 +17,15 @@ const ChatInputContainer = styled.div`
   width: 100%;
   max-width: 600px;
   z-index: 1000;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%; /* ChatInput 높이만큼 높이 설정 */
+    background-color: #f3e8ff;
+    z-index: -1; /* ChatInput 뒤에 배경색이 오도록 설정 */
+  }
 `;
 
 const ChatInput = ({ onSend, today }) => {

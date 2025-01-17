@@ -8,7 +8,7 @@ const ChatContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: #e7e4e799;
+  background-color: #f3e8ff;
 `;
 
 const Chat = ({setMessage, messages, today}) => {
