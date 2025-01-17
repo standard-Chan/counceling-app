@@ -15,12 +15,11 @@ const ChatBodyContainer = styled.div`
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ChatBody = ({ responseMessages }) => {
+const ChatBody = ({ responseMessages, today }) => {
   const [messages, setMessages] = useState([]);
-  const [today, setToday] = useState("20250116");
 
   useEffect(() => {
-    setMessages(responseMessages.messages[today]);
+    setMessages(responseMessages);
   }, [responseMessages, today]);
 
   
@@ -31,7 +30,6 @@ const ChatBody = ({ responseMessages }) => {
         <ChatBubble key={index} sender={message.role} text={message.content}/>
       )}
       )}
-      <ChatBubble sender={'user'} text={'끝'}/>
       <ChatInput today={today}/>
     </ChatBodyContainer>
   );

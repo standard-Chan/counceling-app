@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../ui/common/Header";
-import Input from "../../ui/common/Input";
-import Text from "../../ui/common/Text";
-import Button from "../../ui/common/Button";
-import FormProvider, { FormContext } from "../../ui/common/Form";
-import Card from "../../ui/common/Card";
 import ChatBody from "../../ui/chat/ChatBody";
-import { Api } from "../../lib/Api";
+import { useEffect } from "react";
 
 const ChatContainer = styled.div`
   display: flex;
@@ -17,15 +11,14 @@ const ChatContainer = styled.div`
   background-color: #e7e4e799;
 `;
 
-const Chat = ({setMessage, messages}) => {
+const Chat = ({setMessage, messages, today}) => {
   useEffect(() => {
-    Api.get("/20250116").then((response) => {setMessage(response.data)});
+    setMessage();
   }, []);
-
   return (
     <ChatContainer>
       <Header level={1}>채팅 이름</Header>
-      <ChatBody responseMessages={messages}/>
+      <ChatBody responseMessages={messages} today={today}/>
     </ChatContainer>
   );
 };

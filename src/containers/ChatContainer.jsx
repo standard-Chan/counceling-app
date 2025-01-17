@@ -3,15 +3,17 @@ import requestMessageAction from "../actions/getMessageAction";
 import Chat from "../components/chat/Chat";
 import { useCallback } from "react";
 
-const ChatContainer = () => {
-  const messages = useSelector((state) => state.message);
+const ChatContainer = ({today}) => {
+  const messages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
+  
+  // today 대화 기록 얻어오기
   const setMessage = useCallback(() => {
-    dispatch(requestMessageAction());
-  }, []);
+    dispatch(requestMessageAction(today));
+  }, [today]);
 
   return (
-    <Chat setMessage={setMessage} messages={messages}/>
+    <Chat setMessage={setMessage} messages={messages} today={today}/>
   );
 };
 

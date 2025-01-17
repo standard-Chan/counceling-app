@@ -23,8 +23,6 @@ const ChatInput = ({ onSend, today }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
     dispatch(fetchMessagesThunk(values, today));
-    
-    // dispatch(newMessages);
   };
   return (
     <ChatInputContainer>

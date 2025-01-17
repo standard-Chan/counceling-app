@@ -9,7 +9,7 @@ const messageReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_MESSAGE:
-      const messages = action.payload.messages;
+      const messages = action.payload;
       return {...state, messages};
     default:
       return state;
