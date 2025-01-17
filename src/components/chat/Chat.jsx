@@ -19,17 +19,13 @@ const ChatContainer = styled.div`
 
 const Chat = ({setMessage, messages}) => {
   useEffect(() => {
-    Api.get("/response").then((response) => {setMessage(response.data)});
+    Api.get("/20250116").then((response) => {setMessage(response.data)});
   }, []);
-
-  const onSubmit = (values) => {
-    console.log("submit : ", values);
-  }
 
   return (
     <ChatContainer>
       <Header level={1}>채팅 이름</Header>
-      <ChatBody onSubmit={onSubmit} responseMessages={messages}/>
+      <ChatBody responseMessages={messages}/>
     </ChatContainer>
   );
 };

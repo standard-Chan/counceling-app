@@ -24,7 +24,6 @@ export const FormProvider = ({
         newValues[element.name] = "";
       }
     }
-
     setValues(newValues);
   };
 

@@ -26,8 +26,10 @@
     - ChatLoader.js: 채팅 생성 로딩
 
   # components
-    - redux : 얻은 API 응답 데이터 출력
-    - get한 응답 데이터 db에 저장
+    - redux Action, reducers
+      - api 응답 처리
+
+
 ## OPEN AI 
   ### PROMPT 개선사항
   

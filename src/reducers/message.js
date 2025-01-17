@@ -1,4 +1,4 @@
-import { SET_MESSAGE } from "../actions/messageAction";
+import { SET_MESSAGE } from "../actions/getMessageAction";
 
 
 const initialState = {
@@ -14,6 +14,7 @@ const messageReducer = (state = initialState, action) => {
     default:
       return state;
   }
+  
 }
 
 export default messageReducer;

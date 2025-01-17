@@ -15,13 +15,13 @@ const ChatBodyContainer = styled.div`
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const ChatBody = ({ responseMessages, onSubmit }) => {
+const ChatBody = ({ responseMessages }) => {
   const [messages, setMessages] = useState([]);
-  const [date, setDate] = useState("20250117");
+  const [today, setToday] = useState("20250116");
 
   useEffect(() => {
-    setMessages(responseMessages.messages[date]);
-  }, [responseMessages, date]);
+    setMessages(responseMessages.messages[today]);
+  }, [responseMessages, today]);
 
   
   return (
@@ -32,7 +32,7 @@ const ChatBody = ({ responseMessages, onSubmit }) => {
       )}
       )}
       <ChatBubble sender={'user'} text={'끝'}/>
-      <ChatInput onSubmit={onSubmit}/>
+      <ChatInput today={today}/>
     </ChatBodyContainer>
   );
 };
