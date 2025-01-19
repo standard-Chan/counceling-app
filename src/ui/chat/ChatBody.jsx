@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
@@ -48,14 +48,21 @@ const ChatBodyContainer = styled.div`
 
 const ChatBody = ({ responseMessages, today }) => {
   const [messages, setMessages] = useState([]);
+  const chatBodyRef = useRef(null);
 
   useEffect(() => {
     setMessages(responseMessages);
   }, [responseMessages, today]);
-  console.log("today : ", today);
+
+  
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
-    <ChatBodyContainer>
+    <ChatBodyContainer ref={chatBodyRef}>
       {messages && messages.length > 0 && messages.map((message, index) => (
         <ChatBubble key={index} sender={message.role} text={message.content}/>
       ))}
