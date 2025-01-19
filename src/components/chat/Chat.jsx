@@ -17,7 +17,7 @@ const Chat = ({setMessage, messages, today}) => {
   }, []);
   return (
     <ChatContainer>
-      <Header level={1}>채팅 이름</Header>
+      <Header color={"#490778"} level={1} center={1}>감정 상담</Header>
       <ChatBody responseMessages={messages} today={today}/>
     </ChatContainer>
   );
