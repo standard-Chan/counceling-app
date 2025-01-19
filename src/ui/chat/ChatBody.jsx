@@ -49,11 +49,16 @@ const ChatBodyContainer = styled.div`
 const ChatBody = ({ responseMessages, today }) => {
   const [messages, setMessages] = useState([]);
   const chatBodyRef = useRef(null);
+  const [startMessage, setStartMessage] = useState('');
 
   useEffect(() => {
     setMessages(responseMessages);
   }, [responseMessages, today]);
 
+  useEffect(() => {
+    const startMessage = '오늘은 어떤 일이 있었나요? 하고싶은 말을 해도 좋아요.';
+    setStartMessage(startMessage);
+  }, []);
   
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -63,6 +68,7 @@ const ChatBody = ({ responseMessages, today }) => {
 
   return (
     <ChatBodyContainer ref={chatBodyRef}>
+      <ChatBubble sender={'start-assistant'} text={startMessage}/>
       {messages && messages.length > 0 && messages.map((message, index) => (
         <ChatBubble key={index} sender={message.role} text={message.content}/>
       ))}

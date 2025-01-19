@@ -4,11 +4,10 @@ import { getDocument } from "../../lib/firebase/readFireStore";
 import { getToday } from "../../lib/date";
 
 const MainPage = () => {
-  const [today, setToday] = useState("20250116");
-
+  const [today, setToday] = useState(getToday());
+  
   useEffect(() => {
-    console.log("20")
-    setToday("20250119");
+    setToday(getToday());
   },[]);
 
   return (

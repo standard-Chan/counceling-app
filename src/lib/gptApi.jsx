@@ -46,6 +46,7 @@ export function convertToGptRequestPayload (messages) {
     max_completion_tokens: 500,
     n: 1,
     presence_penalty: 0.3,
+    Temperature: 1,
     top_p: 0.7,
   }
 
