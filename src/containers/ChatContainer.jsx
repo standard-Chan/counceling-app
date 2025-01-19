@@ -8,12 +8,12 @@ const ChatContainer = ({today}) => {
   const dispatch = useDispatch();
   
   // today 대화 기록 얻어오기
-  const setMessage = useCallback(() => {
+  useCallback(() => {
     dispatch(requestMessageAction(today));
   }, [today]);
 
   return (
-    <Chat setMessage={setMessage} messages={messages} today={today}/>
+    <Chat messages={messages} today={today}/>
   );
 };
 

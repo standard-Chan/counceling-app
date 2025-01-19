@@ -21,6 +21,12 @@ export const getCollection = async (collectionPath) => {
   const collectionRef = collection(db, collectionPath);
   const querySnapshot = await getDocs(collectionRef);
   const documents = [];
+
+  if (querySnapshot.empty) {
+    console.log("No such collection!");
+    return documents;
+  }
+
   querySnapshot.forEach((doc) => {
     documents.push({ id: doc.id, ...doc.data() });
   });

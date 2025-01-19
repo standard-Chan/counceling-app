@@ -11,10 +11,8 @@ const ChatContainer = styled.div`
   background-color: #f3e8ff;
 `;
 
-const Chat = ({setMessage, messages, today}) => {
-  useEffect(() => {
-    setMessage();
-  }, []);
+const Chat = ({messages, today}) => {
+  
   return (
     <ChatContainer>
       <Header color={"#490778"} level={1} center={1}>감정 상담</Header>

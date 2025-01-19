@@ -52,6 +52,7 @@ const ChatBody = ({ responseMessages, today }) => {
   useEffect(() => {
     setMessages(responseMessages);
   }, [responseMessages, today]);
+  console.log("today : ", today);
 
   return (
     <ChatBodyContainer>

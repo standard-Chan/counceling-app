@@ -12,9 +12,7 @@
 
   - 유지보수 문제
 
-  json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하는 과정에서 번거로움이 발생함.
-
-  해당 axios.get을 통해 얻은 데이터가 array인지, 단순 object인지 기억이 안나서, 매번 타입을 확인해야하는 문제점. 따라서 typescript를 통해 유지보수의 속도를 올릴 필요성을 느낌.
+  json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하는 과정에서 번거로움이 발생 => 해당 axios.get을 통해 얻은 데이터가 array인지, 단순 object인지 기억이 안나서, 매번 타입을 확인해야하는 문제점. 따라서 typescript를 통해 유지보수의 속도를 올릴 필요성을 느낌.
 
 
 # API 데이터 설계
