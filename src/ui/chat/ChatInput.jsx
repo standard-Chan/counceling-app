@@ -5,7 +5,6 @@ import Input from "../common/Input";
 import Button from "../common/Button";
 import Card from "../common/Card";
 import Spacing from "../common/Spacing";
-import { Api } from "../../lib/Api";
 import { useDispatch } from "react-redux";
 import { fetchMessagesThunk } from "../../actions/fetchMessagesAction";
 

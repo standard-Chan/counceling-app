@@ -1,4 +1,3 @@
-import { Api } from "../lib/Api";
 import { getDocument } from "../lib/firebase/readFireStore";
 import { setDocument, updateDocument } from "../lib/firebase/setFireStore";
 import gptApi, { convertToGptRequestPayload } from "../lib/gptApi";

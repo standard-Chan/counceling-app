@@ -30,3 +30,7 @@ export const getToday = () => {
 
   return `${year}${month}${day}`;
 }
+
+export const getDaysInMonth = (year, month) => {
+  return new Date(year, month, 0).getDate();
+};

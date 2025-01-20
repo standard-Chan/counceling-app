@@ -7,6 +7,7 @@ import NavMenu from './components/NavMenu';
 import Info from './components/info/Info';
 
 function App() {
+  
   return (
     <BrowserRouter>
         <NavMenu />
