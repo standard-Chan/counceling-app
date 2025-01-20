@@ -28,10 +28,10 @@ const ChatInputContainer = styled.div`
   }
 `;
 
-const ChatInput = ({ onSend, today }) => {
+const ChatInput = ({ onSend, now }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
-    dispatch(fetchMessagesThunk(values, today));
+    dispatch(fetchMessagesThunk(values, now));
   };
   return (
     <ChatInputContainer>

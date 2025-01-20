@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import ChatContainer from "../../containers/ChatContainer";
 import { getDocument } from "../../lib/firebase/readFireStore";
-import { getToday } from "../../lib/date";
+import { getCurrentTime, getToday } from "../../lib/date";
 
 const MainPage = () => {
-  const [today, setToday] = useState(getToday());
+  const [now, setNow] = useState(getCurrentTime());
   
   useEffect(() => {
-    setToday(getToday());
+    setNow(getCurrentTime());
   },[]);
 
   return (
     <div>
-      <ChatContainer today={today}/>
+      <ChatContainer now={now}/>
     </div>
   );
 };

@@ -3,17 +3,17 @@ import requestMessageAction from "../actions/getMessageAction";
 import Chat from "../components/chat/Chat";
 import { useCallback, useEffect } from "react";
 
-const ChatContainer = ({today}) => {
+const ChatContainer = ({now}) => {
   const messages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
   
   // today 대화 기록 얻어오기
   useEffect(() => {
-    dispatch(requestMessageAction(today));
-  }, [today]);
+    dispatch(requestMessageAction(now));
+  }, [now]);
 
   return (
-    <Chat messages={messages} today={today}/>
+    <Chat messages={messages} now={now}/>
   );
 };
 

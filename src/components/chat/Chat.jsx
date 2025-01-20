@@ -11,12 +11,12 @@ const ChatContainer = styled.div`
   background-color: #f3e8ff;
 `;
 
-const Chat = ({messages, today}) => {
+const Chat = ({messages, now}) => {
   
   return (
     <ChatContainer>
       <Header color={"#490778"} level={1} center={1}>감정 상담</Header>
-      <ChatBody responseMessages={messages} today={today}/>
+      <ChatBody responseMessages={messages} now={now}/>
     </ChatContainer>
   );
 };

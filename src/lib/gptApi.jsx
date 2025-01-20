@@ -10,7 +10,7 @@ const systemPrompt = "You are an empathetic conversational assistant designed to
 +"2. To identify and summarize the user's two primary emotions in the form of keywords."
 +"3. To assign a score (1-10) for each emotion and explain briefly why they feel that way."
 +"Guidelines:"
-+"- Communicate entirely in Korean."
++"- Communicate entirely in Korean. and '*어요. *요'말투를 사용하세요."
 +"- Avoid asking directly about the user's emotions at the beginning. Start with light ice-breaking comments and gradually guide the conversation toward deeper emotional topics."
 +"- Ask thoughtful, empathetic, and open-ended questions to help the user express their feelings."
 +"- After five responses, analyze their input to extract two primary emotions and provide a brief summary."
@@ -42,12 +42,11 @@ export function convertToGptRequestPayload (messages) {
   const gptRequestPayload = {
     model: "gpt-3.5-turbo-0125",
     messages: gptPayloadMessages,
-    frequency_penalty: 1,
-    max_completion_tokens: 500,
-    n: 1,
-    presence_penalty: 0.3,
-    Temperature: 1,
-    top_p: 0.7,
+    "frequency_penalty": 0.1,
+    "n": 1,
+    "presence_penalty": 0.7,
+    "temperature": 0.85,
+    "top_p": 0.9
   }
 
   return gptRequestPayload;

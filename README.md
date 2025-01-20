@@ -30,12 +30,15 @@
       - api 응답 처리
 
 # 보완해야할 점
+  ## api
+  - transaction 처리
+
   ## firebase
   - firestore document의 특정 데이터만 사용하고 싶은데, document에 데이터가 너무 많은 경우
     - firebase는 document 데이터 전체를 가져오는 기능밖에 없기 때문에 속도가 느려질 수 있다.따라서 특정 document에 있는 데이터를 효과적으로 나누어 저장해야 한다.
     - 1. document name을 날짜로 변환하는 방법
 
   ## OPEN AI 
-   PROMPT 개선사항
-  
+   PROMPT 개선할 사항
   - 사용자의 취향을 고려하여, ex. MBTI 등의 정보를 assistant에 전달하면 더욱 좋은 대화 가능.
+  - 매번 동일한 레파토리로 대화를 진행하는 문제점 : prompt의 temperature를 조정.
