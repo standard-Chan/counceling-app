@@ -15,6 +15,11 @@
   json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하는 과정에서 번거로움이 발생 => 해당 axios.get을 통해 얻은 데이터가 array인지, 단순 object인지 기억이 안나서, 매번 타입을 확인해야하는 문제점. 따라서 typescript를 통해 유지보수의 속도를 올릴 필요성을 느낌.
 
 
+## react의 모든 컴포넌트 내부 state 변경
+ - 동적 렌더링 구현 가능
+  특정 컴포넌트의 내부 state를 변경하려면 해당 컴포넌트에서 정의한 함수를 전달하면 된다. 장거리에서 내부 state를 변경할 수 있기 때문에 higher order로 구현한 ModalContext와 같은 컴포넌트에서 반환되는 Modal JSX를 바꿀 수 있다. 
+  
+
 # API 데이터 설계
 
 #### 다음의 형태로 데이터가 전송됨.

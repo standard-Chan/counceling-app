@@ -1,20 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import AppLayout from './components/AppLayout';
 import MainPage from './components/main/MainPage';
 import NavMenu from './components/NavMenu';
 import Info from './components/info/Info';
+import ModalProvider from './ui/modal/ModalProvider';
 
 function App() {
-  
+
   return (
     <BrowserRouter>
+      <ModalProvider>
         <NavMenu />
         <Routes>
-          <Route path="/main" element={<MainPage/>} />
-          <Route path="/info" element={<Info/>} />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/info" element={<Info />} />
         </Routes>
+      </ModalProvider>
     </BrowserRouter>
   );
 }

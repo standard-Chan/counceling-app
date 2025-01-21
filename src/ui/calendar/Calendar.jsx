@@ -19,7 +19,7 @@ const Calendar = ({ now, days, onDateClick }) => {
       {days && days.map((day) => (
         <CalendarDay
           key={day.date}
-          day={day}
+          dayInfo={day}
           content={day.details}
           onClick={onDateClick}
         />

@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { ModalContext } from "../modal/ModalProvider";
 
 const DayContainer = styled.div`
   position: relative;
@@ -7,7 +8,7 @@ const DayContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 60px;
-  background-color: ${props => (props.isToday ? '#c4a3e2' : '#e6d5f5')};
+  background-color: ${(props) => (props.isToday ? "#c4a3e2" : "#e6d5f5")};
   color: #5c4776;
   font-size: 13px;
   font-weight: bold;
@@ -16,12 +17,12 @@ const DayContainer = styled.div`
   transition: transform 0.2s, background-color 0.2s;
 
   &:hover {
-    background-color: ${props => (props.isToday ? '#b392d1' : '#d2b8ee')};
+    background-color: ${(props) => (props.isToday ? "#b392d1" : "#d2b8ee")};
     transform: scale(1.05);
   }
 
   &:active {
-    background-color: ${props => (props.isToday ? '#a381c0' : '#c4a3e2')};
+    background-color: ${(props) => (props.isToday ? "#a381c0" : "#c4a3e2")};
   }
 `;
 
@@ -41,14 +42,26 @@ const Content = styled.div`
   height: 100%;
 `;
 
-const CalendarDay = ({ day, onClick, isToday, content }) => {
-  const { emotion1, emotion2 } = content;
+const CalendarDay = ({ dayInfo, isToday }) => {
+  const { emotion1, emotion2 } = dayInfo.details;
+  console.log('c : ', dayInfo);
 
   return (
-    <DayContainer onClick={() => onClick(day)} isToday={isToday}>
-      <Label>{day.label}</Label>
-      <Content>{emotion1[0]}<br/>{emotion2[0]}</Content>
-    </DayContainer>
+    <ModalContext.Consumer>
+      {({ openModal }) => (
+        <DayContainer
+          onClick={() => openModal(dayInfo.date, dayInfo)}
+          isToday={isToday}
+        >
+          <Label>{dayInfo.label}</Label>
+          <Content>
+            {emotion1[0]}
+            <br />
+            {emotion2[0]}
+          </Content>
+        </DayContainer>
+      )}
+    </ModalContext.Consumer>
   );
 };
 
