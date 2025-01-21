@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
+import { conversationCount } from '../../constant';
 
 const ChatBodyContainer = styled.div`
   flex: 1;
@@ -50,11 +51,21 @@ const ChatBody = ({ responseMessages, now }) => {
   const [messages, setMessages] = useState([]);
   const chatBodyRef = useRef(null);
   const [startMessage, setStartMessage] = useState('');
+  const [chatLocked, setChatLocked] = useState(false);
 
+  // 채팅 메시지 불러오기
   useEffect(() => {
     setMessages(responseMessages);
+    // 채팅 10 회 완료
+    if (responseMessages && responseMessages.length >= conversationCount) {
+      setChatLocked(true);
+    }
+    else {
+      setChatLocked(false);
+    }
   }, [responseMessages, now]);
 
+  // 첫 채팅 메시지 설정
   useEffect(() => {
     const startMessage = '오늘은 어떤 일이 있었나요? 하고싶은 말을 해도 좋아요.';
     setStartMessage(startMessage);
@@ -72,7 +83,7 @@ const ChatBody = ({ responseMessages, now }) => {
       {messages && messages.length > 0 && messages.map((message, index) => (
         <ChatBubble key={index} sender={message.role} text={message.content}/>
       ))}
-      <ChatInput now={now}/>
+      <ChatInput now={now} locked={chatLocked}/>
     </ChatBodyContainer>
   );
 };

@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { parsingSep, parsingSepEnd, parsingSepMain } from "../constant";
 
 const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPEN_AI_API_KEY,
@@ -13,10 +14,9 @@ const systemPrompt = "You are an empathetic conversational assistant designed to
 +"- Communicate entirely in Korean. and '*어요. *요'말투를 사용하세요."
 +"- Avoid asking directly about the user's emotions at the beginning. Start with light ice-breaking comments and gradually guide the conversation toward deeper emotional topics."
 +"- Ask thoughtful, empathetic, and open-ended questions to help the user express their feelings."
-+"- After five responses, analyze their input to extract two primary emotions and provide a brief summary."
-+"Your summary must follow this format in :"
-+"[Emotion1 keywords, Score 1-10, Reason Brief explanation]"
-+"[Emotion2 keywords, Score 1-10, Reason Brief explanation]. Don't use any other words to summarize.";
++"- After five responses, you must analyze their input to extract two primary emotions and provide a brief summary."
++`Don't use any other words to summarize. Your summary must follow this format below:`
++`${parsingSepMain} Emotion keywords ${parsingSep} score ${parsingSep} Reason Brief explanation ${parsingSepMain} Emotion keywords ${parsingSep} score ${parsingSep} Reason Brief explanation`;
 
 // gpt api 호출
 async function gptApi(gptFormatObject) {
@@ -45,8 +45,8 @@ export function convertToGptRequestPayload (messages) {
     "frequency_penalty": 0.1,
     "n": 1,
     "presence_penalty": 0.7,
-    "temperature": 0.85,
-    "top_p": 0.9
+    //"temperature": 0.85,
+    //"top_p": 0.9
   }
 
   return gptRequestPayload;

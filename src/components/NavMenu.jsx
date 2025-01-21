@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom';
 const NavContainer = styled.div`
   position: fixed;
   top: 0;
-  right: ${props => (props.isOpen ? '0' : '-250px')};
-  width: 250px;
+  left: ${props => (props.isOpen ? '0px' : '-200px')};
+  width: 200px;
   height: 100%;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
+  transition: left 0.3s ease;
   z-index: 1000;
 `;
 
 const NavButton = styled.button`
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #6c63ff;
+  top: 5px;
+  left: 20px;
+  background-color: #7c77e3;
   color: #fff;
   border: none;
   padding: 10px 20px;

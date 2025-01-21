@@ -1,4 +1,5 @@
 import { getDocument } from "../lib/firebase/readFireStore";
+import { createDocumentNotExisted } from "../lib/firebase/setFireStore";
 
 export const SET_MESSAGE = 'chat/SET_MESSAGE';
 
@@ -9,6 +10,7 @@ const setMessageAction = (messages) => ({ type: SET_MESSAGE, payload: messages }
 const requestDateMessageAction = (date) => {
   return (dispatch) => {
     const yearMonth = date.year + date.month;
+    //createDocumentNotExisted(`userID/jeong/messages/`, yearMonth, {});
     getDocument(`userID/jeong/messages/${yearMonth}`).then((response) => {
       console.log('response', response);
       dispatch(setMessageAction(response[date.day]))

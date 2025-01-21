@@ -20,6 +20,7 @@ const Calendar = ({ now, days, onDateClick }) => {
         <CalendarDay
           key={day.date}
           day={day}
+          content={day.details}
           onClick={onDateClick}
         />
       ))}

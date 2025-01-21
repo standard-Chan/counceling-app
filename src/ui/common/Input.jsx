@@ -31,6 +31,7 @@ const Input = ({
   padding,
   borderColor,
   focusBorderColor,
+  disabled,
 }) => {
   const onChange = (e) => {
     if (updateValues)
@@ -50,6 +51,7 @@ const Input = ({
       padding={padding}
       borderColor={borderColor}
       focusBorderColor={focusBorderColor}
+      disabled={disabled}
     />
   );
 };

@@ -7,10 +7,8 @@ const ChatContainer = ({now}) => {
   const messages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
   
-  console.log('act : ', now);
   // today 대화 기록 얻어오기
   useEffect(() => {
-    console.log(now);
     dispatch(requestDateMessageAction(now));
   }, [now]);
 

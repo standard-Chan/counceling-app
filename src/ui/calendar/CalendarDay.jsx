@@ -9,7 +9,7 @@ const DayContainer = styled.div`
   height: 60px;
   background-color: ${props => (props.isToday ? '#c4a3e2' : '#e6d5f5')};
   color: #5c4776;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -42,10 +42,12 @@ const Content = styled.div`
 `;
 
 const CalendarDay = ({ day, onClick, isToday, content }) => {
+  const { emotion1, emotion2 } = content;
+
   return (
     <DayContainer onClick={() => onClick(day)} isToday={isToday}>
       <Label>{day.label}</Label>
-      <Content>{content}</Content>
+      <Content>{emotion1[0]}<br/>{emotion2[0]}</Content>
     </DayContainer>
   );
 };

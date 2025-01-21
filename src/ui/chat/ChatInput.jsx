@@ -27,7 +27,7 @@ const ChatInputContainer = styled.div`
   }
 `;
 
-const ChatInput = ({ onSend, now }) => {
+const ChatInput = ({ onSend, now, locked }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
     dispatch(fetchMessagesThunk(values, now));
@@ -44,9 +44,10 @@ const ChatInput = ({ onSend, now }) => {
                 reset={reset}
                 updateValues={updateValues}
                 placeholder="메시지를 입력하세요..."
+                disabled={locked}
               />
               <Spacing left={"10px"} />
-              <Button type="submit">전송</Button>
+              <Button type="submit" disabled={locked}>전송</Button>
             </Card>
           )}
         </FormContext.Consumer>

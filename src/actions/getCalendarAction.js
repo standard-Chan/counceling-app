@@ -9,7 +9,7 @@ const setCalendarAction = (MessagesInMonth) => ({ type: SET_CALENDAR, payload: M
 const requestCalendarAction = (date) => {
   return (dispatch) => {
     const yearMonth = date.year + date.month;
-    getDocument(`userID/jeong/messages/${yearMonth}`).then((response) => {
+    getDocument(`userID/jeong/emotions/${yearMonth}`).then((response) => {
       dispatch(setCalendarAction(response));
     });
   };
