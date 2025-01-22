@@ -55,9 +55,9 @@ const CalendarDay = ({ dayInfo, isToday }) => {
         >
           <Label>{dayInfo.label}</Label>
           <Content>
-            {emotion1[0]}
+            {emotion1.emotion && `${emotion1.emotion}: ${emotion1.score}`}
             <br />
-            {emotion2[0]}
+            {emotion1.emotion && `${emotion2.emotion}: ${emotion2.score}`}
           </Content>
         </DayContainer>
       )}

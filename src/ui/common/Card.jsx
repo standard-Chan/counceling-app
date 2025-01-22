@@ -10,19 +10,21 @@ const StyledCard = styled.div`
   padding: ${props => props.padding || '20px'};
   margin: ${props => props.margin || '0px'};
   transition: box-shadow 0.3s ease;
+  flex-direction: ${props => props.flexDirection || 'row' };
 
   &:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
 `;
 
-const Card = ({ children, bgColor, borderColor, padding, margin }) => {
+const Card = ({ children, bgColor, borderColor, padding, margin, flexDirection }) => {
   return (
     <StyledCard
       bgColor={bgColor}
       borderColor={borderColor}
       padding={padding}
       margin={margin}
+      flexDirection={flexDirection}
     >
       {children}
     </StyledCard>

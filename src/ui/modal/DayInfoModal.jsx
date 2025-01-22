@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Card from "../common/Card";
 import Text from "../common/Text";
 import Spacing from "../common/Spacing";
+import ContentCard from "../common/ContentCard";
+import Header from "../common/Header";
 
 const Overlay = styled.div`
   position: fixed;
@@ -46,7 +48,7 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   font-size: 24px;
-  color: #5c4776;
+  color: #8c65bd;
   cursor: pointer;
   &:hover {
     color: #b39ddb;
@@ -60,23 +62,30 @@ const ModalContent = styled.div`
 
 const DayInfoModal = ({ children, contents, onClose }) => {
   console.log(contents.details);
-
+  const { date, details } = contents;
+  const { emotion1, emotion2, advice } = details;
   return (
     <Overlay>
       <ModalContainer>
         <ModalHeader>
-          <ModalTitle>{contents.date}</ModalTitle>
+          <ModalTitle>{date}</ModalTitle>
           <CloseButton onClick={onClose}>close</CloseButton>
         </ModalHeader>
         <ModalContent>
-          <Card>
-            <Text>{contents.details.emotion1}</Text>
-            <Text>{contents.details.emotion2}</Text>
+          <Card flexDirection={"column"} bgColor={"#fffff00"} borderColor={"#fffff00"}>
+            <ContentCard keyword={`${emotion1.emotion}(${emotion1.score}/10)`} content={emotion1.reason}/>
+            <Spacing top={'20px'} />
+            <ContentCard keyword={`${emotion2.emotion}(${emotion2.score}/10)`} content={emotion2.reason}/>
+          </Card>
+          <Spacing top={'20px'} />
+          <Card flexDirection={"column"} bgColor={"#fffdd083"} borderColor={"#fffff00"}>
+            <Text>{advice}</Text>
           </Card>
         </ModalContent>
       </ModalContainer>
     </Overlay>
   );
 };
+
 
 export default DayInfoModal;

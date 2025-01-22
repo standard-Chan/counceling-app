@@ -1,7 +1,7 @@
 import { conversationCount, parsingSep, parsingSepMain } from "../constant";
 import { getDocument } from "../lib/firebase/readFireStore";
 import { createDocumentNotExisted, setDocument, updateDocument } from "../lib/firebase/setFireStore";
-import gptApi, { convertToGptRequestPayload } from "../lib/gptApi";
+import gptApi, { convertToGptRequestPayload, convertToGptRequestPayloadForEmotion } from "../lib/gptApi";
 import { parseString } from "../lib/parser";
 import requestDateMessageAction from "./getMessageAction";
 
@@ -46,38 +46,11 @@ export const fetchMessagesThunk = (values, date) => {
       console.log("지피티 페이로드 : ", gptRequestPayload);
       const response = await gptApi(gptRequestPayload).then((response) => response.choices[0].message);
 
-      let responseMessage = {};
-
-      // 6-1. 응답받은 대화가 10번째 대화일 경우. 결과와 대화내용 파싱 및 감정 저장.
-      if (updatedMessages.length >= conversationCount-1) {
-        console.log("10번째 대화입니다.");
-        const responseString = parseString(response.content, parsingSepMain);
-        const content = responseString[0];
-        const emotion1 = parseString(responseString[1], parsingSep);
-        const emotion2 = parseString(responseString[2], parsingSep);
-        
-        console.log('콘텐츠 : ', content);
-        console.log('감정1 : ', emotion1, emotion2);
-        // emotion을 firestore에 새로 만들어 저장하기.
-        // 해당 document가 없으면 생성하고, 있으면 업데이트하기.
-        //createDocumentNotExisted(`userID/jeong/emotions/`, yearMonth);
-        setDocument(`userID/jeong/emotions/${yearMonth}/`, { [day]: {emotion1, emotion2}});
-
-
-        responseMessage = {
-          "content": content,
-          "role": "assistant",
-        };
-        console.log(responseMessage);
-      }
-
-      else {
-        responseMessage = {
-          "content": response.content,
-          "role": "assistant",
-        };
-        console.log(responseMessage);
-      }
+      const responseMessage = {
+        "content": response.content,
+        "role": "assistant",
+      };
+      console.log(responseMessage);
 
       // 7. 응답받은 대화 추가하고, db에 저장하기 API 데이터 호출하기
       updatedMessages = [...updatedMessages, responseMessage];
@@ -85,6 +58,18 @@ export const fetchMessagesThunk = (values, date) => {
 
       // 8. 저장된 데이터 가져와서 렌더링하기
       dispatch(requestDateMessageAction(date));
+      console.log("update된 메시지 : ", updatedMessages);
+      // 9. 응답받은 대화가 10번째 대화일 경우, 이전 대화 기록을 통해 감정 추출하고 대화 마무리
+      if (updatedMessages.length >= conversationCount) {
+        const gptEmotionRequestPayload = convertToGptRequestPayloadForEmotion(updatedMessages);
+        console.log("10번째 대화입니다.");
+
+        const response = await gptApi(gptEmotionRequestPayload).then((response) => JSON.parse(response.choices[0].message.content));
+        console.log('감정 결과 : ', response);
+        console.log("emotion1 : ", response.emotion1);
+        updateDocument(`userID/jeong/emotions/${yearMonth}/`, { [day]: response });
+      }
+
 
       console.groupEnd();
     } catch (error) {
