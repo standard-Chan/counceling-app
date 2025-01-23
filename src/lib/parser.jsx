@@ -9,7 +9,6 @@
 // parsingSep === '#/#'
 
 export const parseString = (str, sep) => {
-  console.log("parsing : ", str);
   if (typeof str !== 'string' || typeof sep !== 'string') {
     throw new Error('Both arguments must be strings');
   }

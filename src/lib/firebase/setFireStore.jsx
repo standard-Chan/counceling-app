@@ -48,6 +48,6 @@ export const createDocumentNotExisted = async (collectionPath, documentName) => 
       console.log("새로운 문서 생성 완료!");
     }
   } catch (error) {
-    console.error("에러뜸: ", error);
+    console.error("[ERROR]: ", error);
   }
 };

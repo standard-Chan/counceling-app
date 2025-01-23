@@ -19,8 +19,8 @@
     - [x] open ai system prompt 수정, 반환 형식 Json으로 변경
     
   - 1.23 : chat 로딩 및 transaction 처리
-    - [ ] firestore GET 로딩 구현
-    - [ ] chat : api GET 로딩 구현
+    - [x] firestore GET 로딩 구현
+    - [x] chat : api GET 로딩 구현
     - [ ] transaction 처리
       - transaction 처리 동안
         - [ ] 추가적인 채팅이 불가능 하도록 수정

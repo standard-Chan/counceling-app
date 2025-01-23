@@ -12,8 +12,8 @@ const Bubble = styled.div`
   margin-bottom: 8px;
 `;
 
-const ChatBubble = ({ text, sender, width }) => {
-  return <Bubble sender={sender} width={width}>{text}</Bubble>;
+const ChatBubble = ({ text, sender, width, children }) => {
+  return <Bubble sender={sender} width={width}>{text} {children}</Bubble>;
 };
 
 export default ChatBubble;

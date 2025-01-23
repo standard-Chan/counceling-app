@@ -44,7 +44,8 @@ const Content = styled.div`
 
 const CalendarDay = ({ dayInfo, isToday }) => {
   const { emotion1, emotion2 } = dayInfo.details;
-  console.log('c : ', dayInfo);
+  // dayInfo 출력
+  // console.log('dayInfo : ', dayInfo);
 
   return (
     <ModalContext.Consumer>

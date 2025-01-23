@@ -10,8 +10,8 @@ const openai = new OpenAI({
 // gpt api 호출
 async function gptApi(gptFormatObject) {
   const completion = await openai.chat.completions.create(gptFormatObject);
-  console.log(completion.choices[0].message);
-  console.log(completion);
+  // 반환값
+  // console.log(completion);
   return completion;
 }
 
@@ -27,7 +27,8 @@ export function convertToGptRequestPayload(messages) {
     ...gptFormatMessages,
   ];
 
-  console.log("GPT :", gptPayloadMessages);
+  // payload 확인
+  // console.log("GPT :", gptPayloadMessages);
 
   const gptRequestPayload = {
     model: "gpt-3.5-turbo-0125",
@@ -52,8 +53,8 @@ export function convertToGptRequestPayloadForEmotion(messages) {
     { role: "system", content: systemPromptForEmotion },
     ...gptFormatMessages,
   ];
-
-  console.log("GPT :", gptPayloadMessages);
+  // payload 확인
+  // console.log("GPT :", gptPayloadMessages);
   const gptRequestPayload = {
     model: "gpt-4o-mini",
     messages: gptPayloadMessages,

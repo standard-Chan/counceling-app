@@ -27,10 +27,12 @@ const ChatInputContainer = styled.div`
   }
 `;
 
-const ChatInput = ({ onSend, now, locked }) => {
+const ChatInput = ({ onSend, now, locked, disabled }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
-    dispatch(fetchMessagesThunk(values, now));
+    if (!disabled){
+      dispatch(fetchMessagesThunk(values, now));
+    }
   };
   return (
     <ChatInputContainer>
@@ -47,7 +49,7 @@ const ChatInput = ({ onSend, now, locked }) => {
                 disabled={locked}
               />
               <Spacing left={"10px"} />
-              <Button type="submit" disabled={locked}>전송</Button>
+              <Button type="submit" disabled={locked||disabled}>전송</Button>
             </Card>
           )}
         </FormContext.Consumer>

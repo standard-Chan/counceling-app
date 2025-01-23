@@ -48,7 +48,7 @@ const ChatBodyContainer = styled.div`
   scrollbar-color: #d1c4e9 #f3e8ff; /* Firefox */
 `;
 
-const ChatBody = ({ responseMessages, now, loading }) => {
+const ChatBody = ({ responseMessages, now, loading, fetch_loading }) => {
   const [messages, setMessages] = useState([]);
   const chatBodyRef = useRef(null);
   const [startMessage, setStartMessage] = useState("");
@@ -89,8 +89,9 @@ const ChatBody = ({ responseMessages, now, loading }) => {
             text={message.content}
           />
         ))}
+        {fetch_loading && <ChatBubble sender={"loading"}><Loader size={'20px'}/></ChatBubble>}
         {loading && <Loader/>}
-      <ChatInput now={now} locked={chatLocked} />
+      <ChatInput now={now} locked={chatLocked} disabled={fetch_loading}/>
     </ChatBodyContainer>
   );
 };

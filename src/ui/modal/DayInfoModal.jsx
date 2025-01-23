@@ -61,7 +61,6 @@ const ModalContent = styled.div`
 `;
 
 const DayInfoModal = ({ children, contents, onClose }) => {
-  console.log(contents.details);
   const { date, details } = contents;
   const { emotion1, emotion2, advice } = details;
   return (
