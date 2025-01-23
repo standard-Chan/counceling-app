@@ -5,6 +5,7 @@ import { updateDocument } from "../lib/firebase/setFireStore";
 import gptApi, { convertToGptRequestPayload, convertToGptRequestPayloadForEmotion } from "../lib/gptApi";
 import requestDateMessageAction, { setMessageAction } from "./getMessageAction";
 import { db } from "../lib/firebase/firebase";
+import { errorAction, FETCH_ERROR } from "./errorAction";
 
 export const FETCH_MESSAGES = 'chat/FETCH_MESSAGES';
 export const LOADING_FETCH_MESSAGES = 'chat/LOADING_FETCH_MESSAGES_';
@@ -58,16 +59,18 @@ export const fetchMessagesThunk = (values, date) => {
         dispatch(setMessageAction(updatedMessages));
 
         // 6. 데이터 transaction에 save하기
-        transaction.update(docRef+'test', { [day]: updatedMessages });
+        transaction.update(docRef, { [day]: updatedMessages });
 
         // 이후에 해당 코드는 현재 fetch에서 처리하지말고 다른 함수에서 처리하도록 수정하기
         // 7. 응답받은 대화가 10번째 대화일 경우, 이전 대화 기록을 통해 감정 추출하고 대화 마무리
         if (updatedMessages.length >= conversationCount) {
+          const docRef = doc(db, `userID/jeong/emotions/${yearMonth}/`);
           const gptEmotionRequestPayload = convertToGptRequestPayloadForEmotion(updatedMessages);
+
           console.log("마지막 대화입니다.");
 
           const response = await gptApi(gptEmotionRequestPayload).then((response) => JSON.parse(response.choices[0].message.content));
-          transaction.set(`userID/jeong/emotions/${yearMonth}/`, { [day]: response });
+          transaction.update(docRef, { [day]: response });
         }
 
 
@@ -76,6 +79,7 @@ export const fetchMessagesThunk = (values, date) => {
     } catch (error) {
       dispatch(fetchMessagesLoading(false));
       dispatch(setMessageAction(backupMessages));
+      dispatch(errorAction(FETCH_ERROR, "대화를 가져오는 중 에러가 발생했습니다.\n다시 시도해주세요."));
       console.error('Error fetching messages:', error);
     }
   };

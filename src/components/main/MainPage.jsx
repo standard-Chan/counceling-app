@@ -10,8 +10,8 @@ const MainPage = () => {
   }, []);
 
   const temp = {
-    day: "18",
-    hours: "15",
+    day: "23",
+    hours: "1",
     minutes: "22",
     month: "01",
     seconds: "20",

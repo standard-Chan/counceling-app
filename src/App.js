@@ -7,7 +7,6 @@ import Info from './components/info/Info';
 import ModalProvider from './ui/modal/ModalProvider';
 
 function App() {
-
   return (
     <BrowserRouter>
       <ModalProvider>
@@ -20,5 +19,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;

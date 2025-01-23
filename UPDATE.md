@@ -21,10 +21,10 @@
   - 1.23 : chat 로딩 및 transaction 처리
     - [x] firestore GET 로딩 구현
     - [x] chat : api GET 로딩 구현
-    - [ ] transaction 처리
+    - [x] transaction 처리
       - transaction 처리 동안
         - [x] 추가적인 채팅이 불가능 하도록 수정
       - transaction 오류 발생 시
         - [x] transaction 이전으로 복구
-        - [ ] toast 출력
+        - [x] error 발생시 toast 출력
     - [x] 최소한으로 읽고(GET) 최소한으로 쓰도록(POST, UPDATE) 수정

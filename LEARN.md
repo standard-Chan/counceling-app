@@ -118,3 +118,11 @@ json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하
     #### 결론
     도중에 렌더링이 필요한 데이터들을 firebase에서 가져오지 말고 dispatch하여 변경시키고 firebase의 runTransaction을 이용하여 트랜잭션 처리를 한다. 또한 변경 데이터는 마지막에 한번에 처리한다. 
 
+
+## Toast를 어떻게 해야하나
+  <Toast/>를 특정 시간 이후에 꺼지도록 컴포넌트를 만들었는데, redux state가 error로 바뀔때 해당 <Toast/>를 실행만 시키고 싶다.
+
+  방법 
+  1. {display && <Toast/>} 를 한다. => display 변수를 별도로 조정하는 기능을 만들어야함. <Toast/>는 특정 시간 이후 꺼지도록 설계되어있는데 굳이 display 변수를 추가할 이유가 없음.
+  2. 함수가 JSX를 return하도록 설계한다. 이게 괜찮은듯 하다. redux의 구독기능은 state 전체의 변경사항을 감지하므로, 개별 state 변경이 되는지를 확인하면서 변경됨을 감지하면 해당 함수를 실행. => 구현이 너무 복잡하다.
+  3. Toast에 onClose함수를 추가하여, 해당 함수가 종료될 때 dispatch를 수행하도록 하면 된다. Toast함수는 common component 이므로 dispatch를 넣기 힘들었는데, prop으로 전달하여 상황에 따라 다르게 수행시키면 되므로 이 방법이 가장 적절하다. 또한 한번만 실행하는 것은 <div>{function()}</div>을 이용하여 실행 할 수있다. 렌더링 될때마다 재실행 되겠지만, function() 내부에서 조건문을 달아 재실행 되지 않도록 만들었다.
