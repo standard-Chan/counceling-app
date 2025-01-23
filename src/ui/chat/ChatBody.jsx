@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import ChatBubble from './ChatBubble';
-import ChatInput from './ChatInput';
-import { conversationCount } from '../../constant';
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import ChatBubble from "./ChatBubble";
+import ChatInput from "./ChatInput";
+import { conversationCount } from "../../constant";
+import Loader from "../common/Loader";
 
 const ChatBodyContainer = styled.div`
   flex: 1;
@@ -42,35 +43,34 @@ const ChatBodyContainer = styled.div`
     display: none; /* 상단과 하단의 화살표 없애기 */
   }
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: thin;  /* Firefox */
-  scrollbar-color: #d1c4e9 #f3e8ff;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #d1c4e9 #f3e8ff; /* Firefox */
 `;
 
-const ChatBody = ({ responseMessages, now }) => {
+const ChatBody = ({ responseMessages, now, loading }) => {
   const [messages, setMessages] = useState([]);
   const chatBodyRef = useRef(null);
-  const [startMessage, setStartMessage] = useState('');
+  const [startMessage, setStartMessage] = useState("");
   const [chatLocked, setChatLocked] = useState(false);
-
   // 채팅 메시지 불러오기
   useEffect(() => {
     setMessages(responseMessages);
     // 채팅 10 회 완료
     if (responseMessages && responseMessages.length >= conversationCount) {
       setChatLocked(true);
-    }
-    else {
+    } else {
       setChatLocked(false);
     }
   }, [responseMessages, now]);
 
   // 첫 채팅 메시지 설정
   useEffect(() => {
-    const startMessage = '오늘은 어떤 일이 있었나요? 하고싶은 말을 해도 좋아요.';
+    const startMessage =
+      "오늘은 어떤 일이 있었나요? 하고싶은 말을 해도 좋아요.";
     setStartMessage(startMessage);
   }, []);
-  
+
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
@@ -79,11 +79,18 @@ const ChatBody = ({ responseMessages, now }) => {
 
   return (
     <ChatBodyContainer ref={chatBodyRef}>
-      <ChatBubble sender={'start-assistant'} text={startMessage}/>
-      {messages && messages.length > 0 && messages.map((message, index) => (
-        <ChatBubble key={index} sender={message.role} text={message.content}/>
-      ))}
-      <ChatInput now={now} locked={chatLocked}/>
+      <ChatBubble sender={"start-assistant"} text={startMessage} />
+      {messages &&
+        messages.length > 0 &&
+        messages.map((message, index) => (
+          <ChatBubble
+            key={index}
+            sender={message.role}
+            text={message.content}
+          />
+        ))}
+        {loading && <Loader/>}
+      <ChatInput now={now} locked={chatLocked} />
     </ChatBodyContainer>
   );
 };

@@ -5,6 +5,7 @@ import { useCallback, useEffect } from "react";
 
 const ChatContainer = ({now}) => {
   const messages = useSelector((state) => state.message.messages);
+  const isGettingMessagesLoading = useSelector((state) => state.message.isLoading);
   const dispatch = useDispatch();
   
   // today 대화 기록 얻어오기
@@ -13,7 +14,7 @@ const ChatContainer = ({now}) => {
   }, [now]);
 
   return (
-    <Chat messages={messages} now={now}/>
+    <Chat messages={messages} now={now} loading={isGettingMessagesLoading}/>
   );
 };
 

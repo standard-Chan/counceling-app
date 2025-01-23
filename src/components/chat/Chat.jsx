@@ -3,7 +3,7 @@ import Header from "../../ui/common/Header";
 import ChatBody from "../../ui/chat/ChatBody";
 import { useEffect } from "react";
 
-const ChatContainer = styled.div`
+const ChatContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -11,13 +11,13 @@ const ChatContainer = styled.div`
   background-color: #f3e8ff;
 `;
 
-const Chat = ({messages, now}) => {
+const Chat = ({messages, now, loading}) => {
   
   return (
-    <ChatContainer>
-      <Header color={"#490778"} level={1} center={1}>감정 상담</Header>
-      <ChatBody responseMessages={messages} now={now}/>
-    </ChatContainer>
+    <ChatContainerDiv>
+      <Header color={"#490778"} level={1} center={1}>Emotion Talk</Header>
+      <ChatBody responseMessages={messages} now={now} loading={loading}/>
+    </ChatContainerDiv>
   );
 };
 

@@ -2,10 +2,10 @@ import { conversationCount, parsingSep, parsingSepMain } from "../constant";
 import { getDocument } from "../lib/firebase/readFireStore";
 import { createDocumentNotExisted, setDocument, updateDocument } from "../lib/firebase/setFireStore";
 import gptApi, { convertToGptRequestPayload, convertToGptRequestPayloadForEmotion } from "../lib/gptApi";
-import { parseString } from "../lib/parser";
 import requestDateMessageAction from "./getMessageAction";
 
 export const FETCH_MESSAGES = 'chat/FETCH_MESSAGES';
+export const FETCH_MESSAGES_LOADING = 'chat/FETCH_MESSAGES_LOADING';
 
 export const fetchMessagesAction = (messages) => ({ type: FETCH_MESSAGES, payload: messages });
 

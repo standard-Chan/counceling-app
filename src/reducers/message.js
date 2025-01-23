@@ -1,8 +1,9 @@
-import { SET_MESSAGE } from "../actions/getMessageAction";
+import { SET_MESSAGE, GET_MESSAGES_LOADING } from "../actions/getMessageAction";
 
 
 const initialState = {
   messages: [],
+  isLoading: false,
 }
 
 const messageReducer = (state = initialState, action) => {
@@ -11,6 +12,9 @@ const messageReducer = (state = initialState, action) => {
     case SET_MESSAGE:
       const messages = action.payload;
       return {...state, messages};
+    case GET_MESSAGES_LOADING:
+      const isLoading = action.payload;
+      return {...state, isLoading};
     default:
       return state;
   }
