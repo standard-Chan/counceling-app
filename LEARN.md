@@ -116,5 +116,5 @@ json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하
     변경된 사항을 redux state에서 불러와서 렌더링하는 것이므로 해당 state message 변수를 도중에 수정하는 방식으로 바꾸어서 렌더링하면 된다.
 
     #### 결론
-    도중에 렌더링이 필요한 데이터들을 dispatch하여 변경시키고 firebase의 runTransaction을 이용하여 트랜잭션 처리를 한다. 
+    도중에 렌더링이 필요한 데이터들을 firebase에서 가져오지 말고 dispatch하여 변경시키고 firebase의 runTransaction을 이용하여 트랜잭션 처리를 한다. 또한 변경 데이터는 마지막에 한번에 처리한다. 
 

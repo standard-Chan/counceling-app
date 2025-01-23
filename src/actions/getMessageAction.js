@@ -5,10 +5,10 @@ export const SET_MESSAGE = 'chat/SET_MESSAGE';
 export const GET_MESSAGES_LOADING = 'cahr/SET_GET_LOADING';
 
 // state에 메세지 저장.
-const setMessageAction = (messages) => ({ type: SET_MESSAGE, payload: messages });
+export const setMessageAction = (messages) => ({ type: SET_MESSAGE, payload: messages });
 
 // message get 로딩
-const getMessagesLoading = (isLoading) => ({ type: GET_MESSAGES_LOADING, payload: isLoading });
+export const getMessagesLoading = (isLoading) => ({ type: GET_MESSAGES_LOADING, payload: isLoading });
 
 // date 대화 기록 얻고 redux state에 반영하기 (이후 userID 및 다른 변수도 받도록 수정)
 const requestDateMessageAction = (date) => {

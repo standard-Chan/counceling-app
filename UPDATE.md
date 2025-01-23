@@ -23,9 +23,8 @@
     - [x] chat : api GET 로딩 구현
     - [ ] transaction 처리
       - transaction 처리 동안
-        - [ ] 추가적인 채팅이 불가능 하도록 수정
-        - 
+        - [x] 추가적인 채팅이 불가능 하도록 수정
       - transaction 오류 발생 시
-        - [ ] transaction 이전으로 복구
-          간단한 복구 작업이므로 변수 저장을 통한 복구
+        - [x] transaction 이전으로 복구
         - [ ] toast 출력
+    - [x] 최소한으로 읽고(GET) 최소한으로 쓰도록(POST, UPDATE) 수정

@@ -11,8 +11,8 @@ const messageReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_MESSAGE:
-      const messages = action.payload;
-      return {...state, messages};
+      const messagesPayload = action.payload;
+      return {...state, messages: [...messagesPayload]};
     case GET_MESSAGES_LOADING:
       const isLoading = action.payload;
       return {...state, isLoading};
