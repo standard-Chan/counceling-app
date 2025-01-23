@@ -10,158 +10,92 @@
 
 ## typeScript의 필요성
 
-  - 유지보수 문제
+- 유지보수 문제
 
-  json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하는 과정에서 번거로움이 발생 => 해당 axios.get을 통해 얻은 데이터가 array인지, 단순 object인지 기억이 안나서, 매번 타입을 확인해야하는 문제점. 따라서 typescript를 통해 유지보수의 속도를 올릴 필요성을 느낌.
-
+json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하는 과정에서 번거로움이 발생 => 해당 axios.get을 통해 얻은 데이터가 array인지, 단순 object인지 기억이 안나서, 매번 타입을 확인해야하는 문제점. 따라서 typescript를 통해 유지보수의 속도를 올릴 필요성을 느낌.
 
 ## react의 모든 컴포넌트 내부 state 변경
- - 동적 렌더링 구현 가능
-  특정 컴포넌트의 내부 state를 변경하려면 해당 컴포넌트에서 정의한 함수를 전달하면 된다. 장거리에서 내부 state를 변경할 수 있기 때문에 higher order로 구현한 ModalContext와 같은 컴포넌트에서 반환되는 Modal JSX를 바꿀 수 있다. 
+
+- 동적 렌더링 구현 가능
+  특정 컴포넌트의 내부 state를 변경하려면 해당 컴포넌트에서 정의한 함수를 전달하면 된다. 장거리에서 내부 state를 변경할 수 있기 때문에 higher order로 구현한 ModalContext와 같은 컴포넌트에서 반환되는 Modal JSX를 바꿀 수 있다.
+
+## redux 미들웨어
+  다음 기능을 위해 사용하였다.
+
+  메시지를 API에 전송하면 즉시 전송한 문자를 화면에 렌더링하고, API 요청을 한 후에 반환받은 요청을 화면에 다시 렌더링 해야한다. 위 과정이 하나의 transaction으로 처리되어야하기 때문에 하나의 함수로 묶어서 관리를 할 필요성을 느꼈다.
   
+  ### 다음의 문제상황이 예측되어 미들웨어로 구현
 
-# API 데이터 설계
+  - 전역처리 없이 하면 props로 전달해야하는 값이 너무 많아서 관리하기 어렵다.
+  - GET, POST와 같이 비동기 작업이 많이 사용되기때문에 context api보다 효과적이라고 생각
 
-#### 다음의 형태로 데이터가 전송됨.
+따라서 미들웨어를 이해하고 잘 활용하기 위해 문서를 정리
+
+
+#### 미들웨러 처리 순서
+
+큰 순서는 다음과 같다.
+
+1. dispatch(action_object)
+2. dispatch로 전달된 action 객체가 미들웨어로 전달된다.
+
+
+    - action 객체 -> 기본 미들웨어 -> 미들웨어1 -> 미들웨어2
+
+3. 미들웨어 처리가 완료되면 action을 reducer로 전달
+4. reducer에서 반환한 값으로 store 업데이트
+5. store의 state가 변경됨에 따라서 컴포넌트를 리렌더링
+
+#### 2번 과정을 유심히 살펴보자
+
+미들웨어의 구성은 다음과 같다.
 
 ```
-  completion :
-    {
-    id: 'chatcmpl-AqAUsU2F9EAVmXigbtreePJ2jc9yX',
-    object: 'chat.completion',
-    created: 1736996770,
-    model: 'gpt-4-0613',
-    choices: [
-      {
-        index: 0,
-        message: [Object],
-        logprobs: null,
-        finish_reason: 'length'
-      }
-    ],
-    usage: {
-      completion_tokens: 500,
-      total_tokens: 1748,
-      prompt_tokens_details: { cached_tokens: 1152, audio_tokens: 0 },
-      completion_tokens_details: {
-        reasoning_tokens: 0,
-        audio_tokens: 0,
-        accepted_prediction_tokens: 0,
-        rejected_prediction_tokens: 0
-      }
-    },
-    service_tier: 'default',
-    system_fingerprint: null
+  const middlewareA = store => next => action => {
+  console.log('dispatching', action);
+  const result = next(action); // 다음 미들웨어 또는 reducer로 action 전달
+  console.log('next state', store.getState());
+  return result;
+};
+```
+
+- next()함수
+
+  - 다음 미들웨어로 인자 값을 전달해준다.
+  - 만약 더이상 미들웨어가 없을 경우, reducer로 전달한다.
+
+- return 값
+  - dispatch의 반환값이다. ex. const a = dispatch(A); 일때, a 값
+
+마지막으로 다음 코드의 실행 순서를 예측해보자.
+
+```
+  const middlewareA = store => next => action => {
+    console.log('dispatching', action);
+    const result = next(action); // 다음 미들웨어 또는 reducer로 action 전달
+    console.log('next state', store.getState());
+    return result;
+  }
+  const middlewareB = store => next => action => {
+    console.log('dispatching', action);
+    const result = next(action); // 다음 미들웨어 또는 reducer로 action 전달
+    console.log('next state', store.getState());
+    return result;
   }
 ```
+#### 실행 순서 (action은 다음과 같이 전달된다)
+  1. dispatch(action)
+  2. action -> 기본 미들웨어로 전달
+  3. 기본미들웨어 -> middlewareA
+  4. middlewareA -> middlewareB  (next를 통해서 전달됨)
+  5. middlewareB -> reducer  (next를 통해서 전달됨)
 
-#### 사용할 데이터
-
-```
-  //completion.choices[0].message
-
-  message: {
-  role: 'assistant',
-  content: '안녕하세요',
-  refusal: null
-}
-```
-
-created : 생성된 날짜
-role : assistant
-content : 메세지
-
-다음의 데이터로 변경하여 저장
-
-```
-"userID": {
-  "messages": {
-    "20250116": [
-      {
-        "created": 1736996770,
-        "content": "안녕하세요",
-        "role": "user"
-      },
-      {
-        "created": 1736998921,
-        "content": "오늘하루는 어떤 일이 있었나요?",
-        "role": "assistant"
-      },
-      {
-        "created": 1744105203,
-        "content": "오늘 하루는 고되고 힘들었어요. 하지만 행복했어요. 내가 살아 숨쉴수 있다는 것에 감사했죠.",
-        "role": "user"
-      },
-      {
-        "created": 1756912345,
-        "content": "힘들지만 행복함을 느꼈군요. 행복한 이유에 대해서 구체적으로 들을 수 있을까요?",
-        "role": "assistant"
-      }
-    ]
-  }
-}
-```
-
-completion.choices[0].message.content
-
-## data get
-
- - [ ] 주소/userID 로 접근
- - [ ] `해당.data.messages.${date}`
 
 #### Modal Components
-    - Modal Provider에 JSX 저장. 이후 Provider 제공
-    - Modal Provider를 감싸넣은 JSX를 만든다. 그리고 해당 Modal을 띄우고 싶을때, context에 저장된 Modal 변수를 true로 바꿔주면 된다. 
-    - 위를 위해서는 Modal 변수를 바꿀 수 있는 함수를 context에 저장해두면 된다.
 
+    - Modal Provider에 JSX 저장. 이후 Provider 제공
+    - Modal Provider를 감싸넣은 JSX를 만든다. 그리고 해당 Modal을 띄우고 싶을때, context에 저장된 Modal 변수를 true로 바꿔주면 된다.
+    - 위를 위해서는 Modal 변수를 바꿀 수 있는 함수를 context에 저장해두면 된다.
 
 ## 채팅 전송 기능
 
-#### 미들웨어 없이 할 경우. 다음의 문제가 발생함.
-db데이터 가져오는 함수, messages 업데이트 하는 함수. dispatch(객체)를 했을때,
-두 함수를 별도로 보관하여 관리해야함.
-
-### 미들웨어를 사용하는 경우, 재사용하기 어려운 문제가 있었음.
-request 처리하는 것을 동일하지만, return A라고 고정되어있어서 문제. return B를 해야하는 경우가 발생해서 request는 미들웨어 처리를 하지 않음.
-
-  1. INPUT입력 후 submit => chatGPT API로 해당 데이터 전송
-    - api로 전송할 데이터를 만든다.
-      0. db에 있는 message 데이터 가져오기
-      1. action (message)
-      2. reducer (action.message) => 아래와 같이 messages를 업데이트 (db message + action.message)
-      ```
-        {role: "user", content: action.message} 
-      ```
-      3. 
-
-  2. 수신한 데이터를 db에 post하여 저장
-
-  api로 전송할 데이터는 다음과 같은 구조이어야한다.
-  async function gpt() {
-  const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0125",
-    messages: [
-      {role: "system", content: systemPrompt },
-      {role:"assistant", content: 질문},
-      {role:"user", content: 답변},
-      {role:"assistant", content: 질문},
-      {role:"user", content: 답변},
-    ],
-    // 같은 말 반복 방지
-    frequency_penalty: 1,
-    // 최대 토큰
-    max_completion_tokens: 500,
-    // 생성하는 결과 개수
-    n: 1,
-    // 새로운 주제에 대해 이야기 가능성: 이전에 말했던 텍스트에 나타났는지 여부에 따라 패널티 (-2.0 ~ 2.0)
-    presence_penalty: 0.3,
-    // 응답 형식
-    //response_format
-    // 창의적인 답변
-    //temperature:0.7,
-    // 확률적으로 상위에 위치한 답변 (temperature와 같이 사용하지 말것)
-    top_p: 0.7,
-  });
-  console.log(completion.choices[0].message);
-  console.log(completion); 
-}
