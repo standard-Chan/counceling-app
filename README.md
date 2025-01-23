@@ -7,6 +7,9 @@
 
   ### 심리 상담
 
+## 정리
+- [LEARN.md](./LEARN.md)
+- [UPDATE.md](./UPDATE.md)
 
 
 ## 보완해야할 점
