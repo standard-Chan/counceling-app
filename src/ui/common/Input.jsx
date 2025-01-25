@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-  width: ${(props) => props.width || "77%"};
+  width: ${(props) => props.width || "100%"};
   display: inline-block;
   background-color: ${(props) => props.bgColor || "#ffffff"};
   color: ${(props) => props.color || "#4a4a4a"};

@@ -6,7 +6,9 @@ import { useEffect } from "react";
 const ChatContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100vh;
+  max-width: 1000px;
   width: 100%;
   background-color: #f3e8ff;
 `;

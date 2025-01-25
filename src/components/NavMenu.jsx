@@ -17,6 +17,7 @@ const NavContainer = styled.div`
 `;
 
 const NavButton = styled.button`
+  display: ${props => (props.display ? 'none' : 'inline-block')};
   position: fixed;
   top: 5px;
   left: 20px;
@@ -76,14 +77,14 @@ const NavMenu = () => {
 
   return (
     <>
-      <NavButton onClick={toggleNav}>
+      <NavButton onClick={toggleNav} display={isOpen}>
         {isOpen ? 'Close' : 'Menu'}
       </NavButton>
       <NavContainer ref={navRef} isOpen={isOpen}>
         <ul>
-          <li><NavLink to="/main" onClick={toggleNav}>Main Page</NavLink></li>
+          <li><NavLink to="/main" onClick={toggleNav}>Talk</NavLink></li>
           <Spacing top={"16px"} />
-          <li><NavLink to="/info" onClick={toggleNav}>Info Page</NavLink></li>
+          <li><NavLink to="/info" onClick={toggleNav}>Calendar</NavLink></li>
         </ul>
       </NavContainer>
     </>

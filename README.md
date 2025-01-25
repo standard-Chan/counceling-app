@@ -1,9 +1,15 @@
-# 심리 상담 APP
+# 감정 기록 APP
 
   대화를 통해 감정을 기록하는 앱
 
   ## 기능
-  ### 감정 기록
+  ### 감정 대화 및 기록
+  <img src="./img/talk.png" alt="감정 대화" height="300">
+  OPEN AI를 통한 대화
+  <img src="./img/calendar.png" alt="기록" height="300">
+  월간 기록된 결과
+  <img src="./img/detail.png" alt="기록" height="300">
+  이유와 조언
 
   ### 심리 상담
 

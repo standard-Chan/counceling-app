@@ -30,7 +30,7 @@ const Content = styled.p`
 `;
 
 const EmotionIcon = styled(FaSmileBeam)`
-  color: #b69b05; /* 노란색 */
+  color: #fad400; /* 노란색 */
   font-size: 40px;
 `;
 
@@ -38,7 +38,6 @@ const ContentCard = ({ keyword, score, content }) => {
   return (
     <CardContainer>
       <EmotionIcon/>
-      <Keyword>{"EMOTICON"}</Keyword>
       <Content>{content}</Content>
     </CardContainer>
   );

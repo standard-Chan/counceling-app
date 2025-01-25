@@ -13,13 +13,12 @@ const ChatInputContainer = styled.div`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 600px;
-  z-index: 1000;
+  width: 90%;
+  max-width: 900px;
+  z-index: 100;
   &::before {
     content: "";
     position: absolute;
-    left: 0;
     width: 100%;
     height: 100%; /* ChatInput 높이만큼 높이 설정 */
     background-color: #f3e8ff;

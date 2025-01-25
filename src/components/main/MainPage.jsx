@@ -9,18 +9,9 @@ const MainPage = () => {
     setNow(getCurrentTime());
   }, []);
 
-  const temp = {
-    day: "23",
-    hours: "1",
-    minutes: "22",
-    month: "01",
-    seconds: "20",
-    year: 2025,
-  };
-
   return (
     <div>
-      <ChatContainer now={temp} />
+      <ChatContainer now={now} />
     </div>
   );
 };

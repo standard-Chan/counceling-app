@@ -4,6 +4,18 @@ import Chat from "../components/chat/Chat";
 import { use, useCallback, useEffect } from "react";
 import { errorAction, hideErrorAction } from "../actions/errorAction";
 import Toast from "../ui/common/Toast";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #f3e8ff;
+  height: 100vh;
+`;
+
 
 const ChatContainer = ({ now }) => {
   const messages = useSelector((state) => state.message.messages);
@@ -30,7 +42,7 @@ const ChatContainer = ({ now }) => {
   }, [error]);
 
   return (
-    <div>
+    <Container>
       <Chat
         messages={messages}
         now={now}
@@ -38,7 +50,7 @@ const ChatContainer = ({ now }) => {
         fetch_loading={isGetingMessagesFetchLoading}
       />
       {showErrorToast()}
-    </div>
+    </Container>
   );
 };
 
