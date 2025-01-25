@@ -1,8 +1,17 @@
 
 # 개선 사항
+  - 1.15 : UI 컴포넌트 제작
+    - [x] common UI (Button, Card, Message, Header, Input, Loader, Spacing, Text, Toast)
+  - 1.16 : messages 기능 구현
+    - [x] context를 사용한 Form 컴포넌트 구현
+    - [x] redux를 사용하여 messages 전송 기능 구현
+  - 1.17 : OPEN AI API
+    - [ ] OPEN AI API => prompt가 원하는대로 나오지 않아서 테스트만 실시.
 
-
-  - 1.19 : 
+  - 1.19 : firebase 연동
+    - [x] OPEN AI API 구현
+    - [x] firebase 연동
+    
   - 1.20 : 데이터 구조 변경
     - calendar에 정보를 표현하기 위해서, 데이터를 month단위로 나눔.
       - messages/년월/일  로 수정. ex messages/202501/11
@@ -28,3 +37,7 @@
         - [x] transaction 이전으로 복구
         - [x] error 발생시 toast 출력
     - [x] 최소한으로 읽고(GET) 최소한으로 쓰도록(POST, UPDATE) 수정
+  
+  - 1.25 : UI 변경
+    - [x] calendar 대화 결과가 없는 일자 회색 처리
+    - [x] chat Input 텍스트 바 width를 채팅 bubble에 맞게 변경
