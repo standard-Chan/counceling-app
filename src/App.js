@@ -5,6 +5,9 @@ import MainPage from './components/main/MainPage';
 import NavMenu from './components/NavMenu';
 import Info from './components/info/Info';
 import ModalProvider from './ui/modal/ModalProvider';
+import HomePage from './components/main/HomePage';
+import SignupPage from './components/user/SignupPage';
+import LoginPage from './components/user/LoginPage';
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
       <ModalProvider>
         <NavMenu />
         <Routes>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/info" element={<Info />} />
         </Routes>

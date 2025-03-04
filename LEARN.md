@@ -120,7 +120,7 @@ json-server의 데이터를 REST API로 테스트하다가 firebase로 변경하
 
 
 ## Toast를 어떻게 해야하나
-  <Toast/>를 특정 시간 이후에 꺼지도록 컴포넌트를 만들었는데, redux state가 error로 바뀔때 해당 <Toast/>를 실행만 시키고 싶다.
+  Toast를 특정 시간 이후에 꺼지도록 컴포넌트를 만들었는데, redux state가 error로 바뀔때 해당 <Toast/>를 실행만 시키고 싶다.
 
   방법 
   1. {display && <Toast/>} 를 한다. => display 변수를 별도로 조정하는 기능을 만들어야함. <Toast/>는 특정 시간 이후 꺼지도록 설계되어있는데 굳이 display 변수를 추가할 이유가 없음.

@@ -1,7 +1,5 @@
 import { doc, runTransaction } from "firebase/firestore";
 import { conversationCount } from "../constant";
-import { getDocument } from "../lib/firebase/readFireStore";
-import { updateDocument } from "../lib/firebase/setFireStore";
 import gptApi, { convertToGptRequestPayload, convertToGptRequestPayloadForEmotion } from "../lib/gptApi";
 import requestDateMessageAction, { setMessageAction } from "./getMessageAction";
 import { db } from "../lib/firebase/firebase";

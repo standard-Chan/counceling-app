@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
   width: ${(props) => props.width || "100%"};
   display: inline-block;
-  background-color: ${(props) => props.bgColor || "#ffffff"};
+  background-color: ${(props) => props.backgroundcolor || "#ffffff"};
   color: ${(props) => props.color || "#4a4a4a"};
   font-size: ${(props) => props.fontSize || "16px"};
   padding: ${(props) => props.padding || "12px 20px"};
@@ -25,7 +25,7 @@ const Input = ({
   value = '',
   updateValues,
   width,
-  bgColor,
+  c,
   color,
   fontSize,
   padding,
@@ -45,7 +45,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       width={width}
-      bgColor={bgColor}
+      c={c}
       color={color}
       fontSize={fontSize}
       padding={padding}

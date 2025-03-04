@@ -6,7 +6,7 @@ const ToastContainer = styled.div`
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: ${(props) => props.bgColor || "#dcd6f7"};
+  background-color: ${(props) => props.backgroundcolor || "#dcd6f7"};
   color: ${(props) => props.color || "#4a4a4a"};
   padding: ${(props) => props.padding || "16px 24px"};
   border-radius: 12px;
@@ -27,7 +27,7 @@ const Toast = ({
   message,
   show,
   duration = 3000,
-  bgColor,
+  backgroundcolor,
   color,
   padding,
   onClose,
@@ -45,7 +45,7 @@ const Toast = ({
 
   return (
     <ToastContainer
-      bgColor={bgColor}
+      backgroundcolor={backgroundcolor}
       color={color}
       padding={padding}
       show={visible}

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   display: flex;
-  background-color: ${props => props.bgColor || '#ffffff'};
+  background-color: ${props => props.backgroundcolor || '#ffffff'};
   border: 1px solid ${props => props.borderColor || '#dcd6f7'};
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,10 +17,10 @@ const StyledCard = styled.div`
   }
 `;
 
-const Card = ({ children, bgColor, borderColor, padding, margin, flexDirection }) => {
+const Card = ({ children, backgroundcolor, borderColor, padding, margin, flexDirection }) => {
   return (
     <StyledCard
-      bgColor={bgColor}
+      backgroundcolor={backgroundcolor}
       borderColor={borderColor}
       padding={padding}
       margin={margin}

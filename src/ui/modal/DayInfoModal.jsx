@@ -71,13 +71,13 @@ const DayInfoModal = ({ children, contents, onClose }) => {
           <CloseButton onClick={onClose}>close</CloseButton>
         </ModalHeader>
         <ModalContent>
-          <Card flexDirection={"column"} bgColor={"#fffff00"} borderColor={"#fffff00"}>
+          <Card flexDirection={"column"} backgroundColor={"#fffff00"} borderColor={"#fffff00"}>
             <ContentCard keyword={`${emotion1.emotion}(${emotion1.score}/10)`} content={emotion1.reason}/>
             <Spacing top={'20px'} />
             <ContentCard keyword={`${emotion2.emotion}(${emotion2.score}/10)`} content={emotion2.reason}/>
           </Card>
           <Spacing top={'20px'} />
-          <Card flexDirection={"column"} bgColor={"#fffdd083"} borderColor={"#fffff00"}>
+          <Card flexDirection={"column"} backgroundColor={"#fffdd083"} borderColor={"#fffff00"}>
             <Text>{advice}</Text>
           </Card>
         </ModalContent>

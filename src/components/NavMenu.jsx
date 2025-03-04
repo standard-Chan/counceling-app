@@ -6,7 +6,7 @@ import Spacing from '../ui/common/Spacing';
 const NavContainer = styled.div`
   position: fixed;
   top: 0;
-  left: ${props => (props.isOpen ? '0px' : '-200px')};
+  left: ${props => (props.opened ? '0px' : '-200px')};
   width: 200px;
   height: 100%;
   background-color: #ececec7b; /* 흰색 배경 */
@@ -55,16 +55,21 @@ const NavLink = styled(Link)`
 `;
 
 const NavMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, setOpened] = useState("");
   const navRef = useRef(null);
 
   const toggleNav = () => {
-    setIsOpen(!isOpen);
+        // display가 boolean을 받을 수 없어서, ""로 설정
+    if (!opened) {
+      setOpened("true");
+    } else {
+      setOpened("");
+    }
   };
 
   const handleClickOutside = (event) => {
     if (navRef.current && !navRef.current.contains(event.target)) {
-      setIsOpen(false);
+      setOpened(undefined);
     }
   };
 
@@ -77,11 +82,14 @@ const NavMenu = () => {
 
   return (
     <>
-      <NavButton onClick={toggleNav} display={isOpen}>
-        {isOpen ? 'Close' : 'Menu'}
+      <NavButton onClick={toggleNav} display={opened}>
+        {opened ? 'Close' : 'Menu'}
       </NavButton>
-      <NavContainer ref={navRef} isOpen={isOpen}>
+      <NavContainer ref={navRef} opened={opened}>
         <ul>
+          <Spacing top={"16px"} />
+          <li><NavLink to="/home" onClick={toggleNav}>Home</NavLink></li>
+          <Spacing top={"16px"} />
           <li><NavLink to="/main" onClick={toggleNav}>Talk</NavLink></li>
           <Spacing top={"16px"} />
           <li><NavLink to="/info" onClick={toggleNav}>Calendar</NavLink></li>

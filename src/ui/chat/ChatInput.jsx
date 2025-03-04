@@ -38,7 +38,7 @@ const ChatInput = ({ onSend, now, locked, disabled }) => {
       <FormProvider onSubmit={(values) => handleSubmit(values)}>
         <FormContext.Consumer>
           {({ values, updateValues, reset }) => (
-            <Card bgColor={"#dcd6f7"} padding={"10px 10px"}>
+            <Card backgroundcolor={"#dcd6f7"} padding={"10px 10px"}>
               <Input
                 name="message"
                 value={values["message"]}

@@ -9,7 +9,7 @@ const DayContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 60px;
-  background-color: ${(props) => (props.isToday ? "#f0c8ff" : "#e6d5f5")};
+  background-color: ${(props) => (props.istoday ? "#f0c8ff" : "#e6d5f5")};
   background-color: ${(props) => (props.noTalk ? "#f1eaf8" : "#e6d5f5")};
   color: #5c4776;
   font-size: 13px;
@@ -19,12 +19,12 @@ const DayContainer = styled.div`
   transition: transform 0.2s, background-color 0.2s;
 
   &:hover {
-    background-color: ${(props) => (props.isToday ? "#b392d1" : "#d2b8ee")};
+    background-color: ${(props) => (props.istoday ? "#b392d1" : "#d2b8ee")};
     transform: scale(1.05);
   }
 
   &:active {
-    background-color: ${(props) => (props.isToday ? "#38224b" : "#c4a3e2")};
+    background-color: ${(props) => (props.istoday ? "#38224b" : "#c4a3e2")};
   }
 `;
 
@@ -44,7 +44,7 @@ const Content = styled.div`
   height: 100%;
 `;
 
-const CalendarDay = ({ dayInfo}) => {
+const CalendarDay = ({dayInfo}) => {
   const [isToday, setIsToday] = useState(false);
   const [noData, setNoData] = useState(false);
   const { emotion1, emotion2 } = dayInfo.details;
@@ -66,7 +66,7 @@ const CalendarDay = ({ dayInfo}) => {
       {({ openModal }) => (
         <DayContainer
           onClick={() => openModal(dayInfo.date, dayInfo)}
-          isToday={isToday}
+          istoday={isToday}
           noTalk={noData}
         >
           <Label>{dayInfo.label}</Label>

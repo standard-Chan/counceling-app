@@ -1,8 +1,7 @@
 import { getDocument } from "../lib/firebase/readFireStore";
-import { createDocumentNotExisted } from "../lib/firebase/setFireStore";
 
 export const SET_MESSAGE = 'chat/SET_MESSAGE';
-export const GET_MESSAGES_LOADING = 'cahr/SET_GET_LOADING';
+export const GET_MESSAGES_LOADING = 'chat/SET_GET_LOADING';
 
 // state에 메세지 저장.
 export const setMessageAction = (messages) => ({ type: SET_MESSAGE, payload: messages });
