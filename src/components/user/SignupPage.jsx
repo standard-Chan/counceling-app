@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import handleSignupApi from "../../lib/userApi/signup";
+import handleSignupApi from "../../lib/springBootApi/signup";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import handleLoginApi from "../../lib/userApi/login";
+import handleLoginApi from "../../lib/springBootApi/login";
 
 
 const LoginPage = () => {
@@ -15,6 +15,7 @@ const LoginPage = () => {
     // jwt localStorage에 저장
     if (token) {
       localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
       navigate("/home");
     }
     else {

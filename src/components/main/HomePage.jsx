@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);   // login 여부 확인
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // login 여부 확인
   const navigate = useNavigate();
+
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    navigate("/home")
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,7 +25,14 @@ const HomePage = () => {
         이 웹사이트는 최신 기술을 활용하여 사용자에게 최고의 경험을 제공합니다.
       </p>
 
-      {!isAuthenticated && (
+      {isAuthenticated ? (
+        <button
+          onClick={() => handleLogout()}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          로그아웃
+        </button>
+      ) : (
         <div className="mt-6 flex justify-center space-x-4">
           <button
             onClick={() => navigate("/login")}

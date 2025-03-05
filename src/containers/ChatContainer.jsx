@@ -5,6 +5,7 @@ import { use, useCallback, useEffect } from "react";
 import { errorAction, hideErrorAction } from "../actions/errorAction";
 import Toast from "../ui/common/Toast";
 import styled from "styled-components";
+import { getTodayInDateFormat } from "../lib/date";
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const ChatContainer = ({ now }) => {
   const isGettingMessagesLoading = useSelector(
     (state) => state.message.isLoading
   );
-  const isGetingMessagesFetchLoading = useSelector(
+  const isGettingMessagesFetchLoading = useSelector(
     (state) => state.message.isLoadingFetch
   );
   const error = useSelector((state) => state.error);
@@ -30,7 +31,9 @@ const ChatContainer = ({ now }) => {
 
   // today 대화 기록 얻어오기
   useEffect(() => {
-    dispatch(requestDateMessageAction(now));
+    const today = getTodayInDateFormat(now);
+    const email = localStorage.getItem("email");
+    dispatch(requestDateMessageAction(email, today));
   }, [now]);
 
   useEffect(() => {}, [isGettingMessagesLoading]);
@@ -47,7 +50,7 @@ const ChatContainer = ({ now }) => {
         messages={messages}
         now={now}
         loading={isGettingMessagesLoading}
-        fetch_loading={isGetingMessagesFetchLoading}
+        fetch_loading={isGettingMessagesFetchLoading}
       />
       {showErrorToast()}
     </Container>
