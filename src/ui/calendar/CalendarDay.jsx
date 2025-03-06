@@ -47,7 +47,7 @@ const Content = styled.div`
 const CalendarDay = ({dayInfo}) => {
   const [isToday, setIsToday] = useState(false);
   const [noData, setNoData] = useState(false);
-  const { emotion1, emotion2 } = dayInfo.details;
+  const { emotions, scores } = dayInfo["details"];
   // dayInfo 출력
   // console.log('dayInfo : ', dayInfo);
   useEffect(() => {
@@ -56,10 +56,10 @@ const CalendarDay = ({dayInfo}) => {
   }, [dayInfo.date]);
 
   useEffect(() => {
-    if(emotion1[0] === ''){
+    if(emotions[0] === ''){
       setNoData(true);
     }
-  }, [emotion1.emotion]);
+  }, [emotions]);
 
   return (
     <ModalContext.Consumer>
@@ -71,9 +71,9 @@ const CalendarDay = ({dayInfo}) => {
         >
           <Label>{dayInfo.label}</Label>
           <Content>
-            {emotion1.emotion && `${emotion1.emotion}: ${emotion1.score}`}
+            {emotions[0] && `${emotions[0]}: ${scores[0]}`}
             <br />
-            {emotion1.emotion && `${emotion2.emotion}: ${emotion2.score}`}
+            {emotions[1] && `${emotions[0]}: ${scores[1]}`}
           </Content>
         </DayContainer>
       )}

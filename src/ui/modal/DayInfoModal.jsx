@@ -62,7 +62,7 @@ const ModalContent = styled.div`
 
 const DayInfoModal = ({ children, contents, onClose }) => {
   const { date, details } = contents;
-  const { emotion1, emotion2, advice } = details;
+  const { emotions, reasons, scores, advice } = details;
   return (
     <Overlay>
       <ModalContainer>
@@ -72,9 +72,9 @@ const DayInfoModal = ({ children, contents, onClose }) => {
         </ModalHeader>
         <ModalContent>
           <Card flexDirection={"column"} backgroundColor={"#fffff00"} borderColor={"#fffff00"}>
-            <ContentCard keyword={`${emotion1.emotion}(${emotion1.score}/10)`} content={emotion1.reason}/>
+            <ContentCard keyword={`${emotions[0]}(${scores[0]}/10)`} content={reasons[0]}/>
             <Spacing top={'20px'} />
-            <ContentCard keyword={`${emotion2.emotion}(${emotion2.score}/10)`} content={emotion2.reason}/>
+            <ContentCard keyword={`${emotions[1]}(${scores[1]}/10)`} content={reasons[1]}/>
           </Card>
           <Spacing top={'20px'} />
           <Card flexDirection={"column"} backgroundColor={"#fffdd083"} borderColor={"#fffff00"}>

@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useState } from "react";
-import Toast from "./Toast";
 
 export const FormContext = createContext({});
 
@@ -13,7 +12,7 @@ export const FormProvider = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(values);
+    onSubmit(values); // values를 dispatch하는 함수
 
     // input 비우기
     const formElements = e.target.elements;
@@ -27,6 +26,7 @@ export const FormProvider = ({
     setValues(newValues);
   };
 
+  // Context의 value에 값 추가
   const updateValues = useCallback(
     (name, updatedValue) => {
       setValues((prevValues) => {
@@ -40,6 +40,7 @@ export const FormProvider = ({
     [validate]
   );
 
+  // value 비우기
   const reset = useCallback(() => {
     setValues(initValues);
   }, []);

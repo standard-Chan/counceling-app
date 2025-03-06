@@ -24,7 +24,15 @@ const CalendarContainer = ({ now, onDateClick }) => {
       const day = String(i).padStart(2, "0");
       const date = `${now.year}-${now.month}-${day}`;
       const label = day;
-      let details = { emotion1: ["", "", ""], emotion2: ["", "", ""] };
+      /*
+      advice: "좋은 하루의 기분을 만끽하세요."
+      date: "20250305"
+      emotions:(2) ['설렘', '아픔']
+      reasons:(2) ['내일도 살아갈 수 있다는 사실에 설렙니다.', '공부를 오래해서 허리가 아픕니다.']
+      scores: (2) [6, 5]
+      userEmail: "123@123"
+*/
+      let details = { emotions:["",""], reasons:["",""], scores:[0,0], advice:"" };
 
       // day 해당 날짜의 감정을 매핑하여 CalendarDay에 전달
       if (emotionsOfMonth && emotionsOfMonth.hasOwnProperty(day)) {
@@ -35,7 +43,7 @@ const CalendarContainer = ({ now, onDateClick }) => {
     setDays(daysInfo);
   }, [now, emotionsOfMonth]);
 
-  return <Calendar now={now} days={days} onDateClick={onDateClick} />;
+  return <Calendar now={now} daysEmotions={days} onDateClick={onDateClick} />;
 };
 
 export default CalendarContainer;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { FormContext, FormProvider } from "../common/Form";
 import Input from "../common/Input";
@@ -26,13 +26,16 @@ const ChatInputContainer = styled.div`
   }
 `;
 
-const ChatInput = ({ onSend, now, locked, disabled }) => {
+const ChatInput = ({ now, locked, disabled }) => {
   const dispatch = useDispatch();
-  const handleSubmit = async (values) => {
-    if (!disabled){
-      dispatch(fetchMessagesThunk(values, now));
-    }
-  };
+  const handleSubmit = useCallback(
+    async (values) => {
+      if (!disabled) {
+        dispatch(fetchMessagesThunk(values, now)); // closure로 now를 가져옴
+      }
+    },
+    [dispatch, now, disabled]
+  );
   return (
     <ChatInputContainer>
       <FormProvider onSubmit={(values) => handleSubmit(values)}>
@@ -43,12 +46,14 @@ const ChatInput = ({ onSend, now, locked, disabled }) => {
                 name="message"
                 value={values["message"]}
                 reset={reset}
-                updateValues={updateValues}
+                updateValues={updateValues} // contextApi의 value 업데이트하는 함수
                 placeholder="메시지를 입력하세요..."
                 disabled={locked}
               />
               <Spacing left={"10px"} />
-              <Button type="submit" disabled={locked||disabled}>전송</Button>
+              <Button type="submit" disabled={locked || disabled}>
+                전송
+              </Button>
             </Card>
           )}
         </FormContext.Consumer>

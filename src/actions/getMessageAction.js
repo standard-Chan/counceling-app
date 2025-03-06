@@ -20,7 +20,7 @@ const requestDateMessageAction = (email, today) => {
         "assistantMessage" :  ["...", "GPT response"]
     */
     dispatch(getMessagesLoading(true));
-    //createDocumentNotExisted(`userID/jeong/messages/`, yearMonth, {});
+    //오늘 대화 기록 가져오기
     getConversationApi(email, today).then((response) => {
       const messages = combineConversationByRoles(response.userConversation, response.assistantConversation);
       dispatch(setMessageAction(messages));

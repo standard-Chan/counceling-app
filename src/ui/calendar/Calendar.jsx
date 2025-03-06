@@ -12,15 +12,13 @@ const CalendarContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const Calendar = ({ now, days, onDateClick }) => {
-
+const Calendar = ({ now, daysEmotions, onDateClick }) => {
   return (
     <CalendarContainer>
-      {days && days.map((day) => (
+      {daysEmotions && daysEmotions.map((day) => (
         <CalendarDay
           key={day.date}
           dayInfo={day}
-          content={day.details}
           onClick={onDateClick}
         />
       ))}

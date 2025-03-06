@@ -1,5 +1,5 @@
 
-export const conversationCount = 10;
+export const CONVERSATION_COUNT = 3;
 
 // parsing 문자
 export const parsingSepMain = '$';

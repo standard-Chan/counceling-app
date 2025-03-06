@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaSmileBeam } from "react-icons/fa";
+import Spacing from './Spacing';
 
 const CardContainer = styled.div`
   display: flex;
@@ -38,6 +39,8 @@ const ContentCard = ({ keyword, score, content }) => {
   return (
     <CardContainer>
       <EmotionIcon/>
+      <Spacing left={"7px"}/>
+      <div>{keyword}</div>
       <Content>{content}</Content>
     </CardContainer>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import ChatBubble from "./ChatBubble";
 import ChatInput from "./ChatInput";
-import { conversationCount } from "../../constant";
+import { CONVERSATION_COUNT } from "../../constant";
 import Loader from "../common/Loader";
 
 const ChatBodyContainer = styled.div`
@@ -31,7 +31,7 @@ const ChatBody = ({ responseMessages, now, loading, fetch_loading }) => {
   useEffect(() => {
     setMessages(responseMessages);
     // 채팅 10 회 완료
-    if (responseMessages && responseMessages.length >= conversationCount) {
+    if (responseMessages && responseMessages.length >= CONVERSATION_COUNT) {
       setChatLocked(true);
     } else {
       setChatLocked(false);

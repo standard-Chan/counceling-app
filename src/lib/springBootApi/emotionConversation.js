@@ -1,6 +1,6 @@
 
 // 대화(user, assistant) 저장 API
-export const postConversationApi = async (email, date, userMessage, assistantMessage, token) => {
+export const postConversationApi = async (userEmail, date, userMessage, assistantMessage, token) => {
   const response = fetch("http://localhost:8080/api/emotion/conversation", {
     method: "POST",
     headers: {
@@ -8,7 +8,7 @@ export const postConversationApi = async (email, date, userMessage, assistantMes
       "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
-      email,
+      userEmail,
       date,
       userMessage,
       assistantMessage

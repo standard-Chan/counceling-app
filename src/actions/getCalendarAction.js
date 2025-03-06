@@ -1,4 +1,4 @@
-import { getDocument } from "../lib/firebase/readFireStore";
+import { getMonthEmotionApi } from "../lib/springBootApi/emotion";
 
 export const SET_CALENDAR = 'chat/SET_CALENDAR';
 
@@ -9,8 +9,16 @@ const setCalendarAction = (MessagesInMonth) => ({ type: SET_CALENDAR, payload: M
 const requestCalendarAction = (date) => {
   return (dispatch) => {
     const yearMonth = date.year + date.month;
-    getDocument(`userID/jeong/emotions/${yearMonth}`).then((response) => {
-      dispatch(setCalendarAction(response));
+    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("token");
+    getMonthEmotionApi(email, yearMonth,token).then((response) => {
+      const emotionsInMonth = response.reduce((emotionsInDay, item) => {
+        const day = item.date.slice(-2); // 날짜의 마지막 두 자리 추출
+        emotionsInDay[day] = item;
+        return emotionsInDay;
+    }, {});
+    console.log(emotionsInMonth);
+    dispatch(setCalendarAction(emotionsInMonth));
     });
   };
 }
