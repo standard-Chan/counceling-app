@@ -71,7 +71,7 @@ const DayInfoModal = ({ children, contents, onClose }) => {
           <CloseButton onClick={onClose}>close</CloseButton>
         </ModalHeader>
         <ModalContent>
-          <Card flexDirection={"column"} backgroundColor={"#fffff00"} borderColor={"#fffff00"}>
+          <Card backgroundColor={"#fffff00"} borderColor={"#fffff00"}>
             <ContentCard keyword={`${emotions[0]}(${scores[0]}/10)`} content={reasons[0]}/>
             <Spacing top={'20px'} />
             <ContentCard keyword={`${emotions[1]}(${scores[1]}/10)`} content={reasons[1]}/>

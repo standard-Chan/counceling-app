@@ -38,10 +38,16 @@ const Label = styled.div`
 
 const Content = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+`;
+
+const Text = styled.div`
+  flex: 0.5;
+  width: 100%;
 `;
 
 const CalendarDay = ({dayInfo}) => {
@@ -71,8 +77,7 @@ const CalendarDay = ({dayInfo}) => {
         >
           <Label>{dayInfo.label}</Label>
           <Content>
-            {emotions[0] && `${emotions[0]}: ${scores[0]}`}
-            <br />
+            {emotions[0] && `${emotions[0]}: ${scores[0]}`}<br />
             {emotions[1] && `${emotions[1]}: ${scores[1]}`}
           </Content>
         </DayContainer>

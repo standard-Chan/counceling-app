@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   display: flex;
+  flex-wrap: wrap;
   background-color: ${props => props.backgroundcolor || '#ffffff'};
   border: 1px solid ${props => props.bordercolor || '#dcd6f7'};
   border-radius: 12px;
