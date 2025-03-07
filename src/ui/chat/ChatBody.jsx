@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import ChatBubble from "./ChatBubble";
 import ChatInput from "./ChatInput";
 import { CONVERSATION_COUNT } from "../../constant";
 import Loader from "../common/Loader";
+import Toast from "../common/Toast";
 
 const ChatBodyContainer = styled.div`
   flex: 1;
@@ -30,8 +31,15 @@ const ChatBody = ({ responseMessages, now, loading, fetch_loading }) => {
   // 채팅 메시지 불러오기
   useEffect(() => {
     setMessages(responseMessages);
+    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("token");
     // 채팅 10 회 완료
     if (responseMessages && responseMessages.length >= CONVERSATION_COUNT) {
+      setChatLocked(true);
+    } else if (email === null || token === null) {
+      // 로그인 정보 없음
+      alert("로그인을 해주세요.");
+      window.location.href = "/login";
       setChatLocked(true);
     } else {
       setChatLocked(false);
@@ -44,6 +52,7 @@ const ChatBody = ({ responseMessages, now, loading, fetch_loading }) => {
       "오늘은 무엇을 할 예정이신가요? 나누고 싶은 이야기를 공유해주세요. 있었던 일을 말해주어도 좋아요.";
     setStartMessage(startMessage);
   }, []);
+
 
   useEffect(() => {
     if (chatBodyRef.current) {
