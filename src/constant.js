@@ -7,5 +7,5 @@ export const parsingSep = "|";
 export const parsingSepEnd = '<END>';
 
 // API URL
-export const ApiUrl = process.env.API_URL;
+export const ApiUrl = process.env.REACT_APP_API_URL;
 
