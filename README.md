@@ -30,6 +30,6 @@ https://github.com/standard-Chan/Emotion-Diary-APIserver
 - 업데이트 내역
   - [UPDATE.md](./UPDATE.md)
 - 피드백
-  - [FEEDBACK.md]
+  - [FEEDBACK.md](./FEEDBACK.md)
 
 ----
