@@ -49,7 +49,7 @@ const ChatBody = ({ responseMessages, now, loading, fetch_loading }) => {
   // 첫 채팅 메시지 설정
   useEffect(() => {
     const startMessage =
-      "오늘은 무엇을 할 예정이신가요? 나누고 싶은 이야기를 공유해주세요. 있었던 일을 말해주어도 좋아요.";
+      "저와 10번의 대화를 나눠보아요. 오늘은 무엇을 할 예정이신가요? 나누고 싶은 이야기를 공유해주세요. 있었던 일을 말해주어도 좋아요.";
     setStartMessage(startMessage);
   }, []);
 

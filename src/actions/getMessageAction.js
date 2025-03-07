@@ -1,5 +1,4 @@
 import combineConversationByRoles from "../lib/combineConversationByRoles";
-import { getDocument } from "../lib/firebase/readFireStore";
 import { getConversationApi, GetConversationApi } from "../lib/springBootApi/emotionConversation";
 
 export const SET_MESSAGE = 'chat/SET_MESSAGE';

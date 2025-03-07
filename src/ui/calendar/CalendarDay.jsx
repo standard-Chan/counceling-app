@@ -73,7 +73,7 @@ const CalendarDay = ({dayInfo}) => {
           <Content>
             {emotions[0] && `${emotions[0]}: ${scores[0]}`}
             <br />
-            {emotions[1] && `${emotions[0]}: ${scores[1]}`}
+            {emotions[1] && `${emotions[1]}: ${scores[1]}`}
           </Content>
         </DayContainer>
       )}

@@ -1,8 +1,6 @@
-import { doc, runTransaction } from "firebase/firestore";
 import { CONVERSATION_COUNT } from "../constant";
 import gptApi, { convertToGptRequestPayload, convertToGptRequestPayloadForEmotion } from "../lib/gptApi";
-import requestDateMessageAction, { setMessageAction } from "./getMessageAction";
-import { db } from "../lib/firebase/firebase";
+import { setMessageAction } from "./getMessageAction";
 import { errorAction, FETCH_ERROR } from "./errorAction";
 import { postConversationApi } from "../lib/springBootApi/emotionConversation";
 import { postEmotionApi } from "../lib/springBootApi/emotion";
@@ -20,9 +18,6 @@ export const fetchMessagesThunk = (values, date) => {
     const email = localStorage.getItem("email");
     const backupMessages = getState().message.messages;
     try {
-      await runTransaction(db, async (transaction) => {
-        console.group('gpt fetch messages');
-
         // 1. redux 에서 이전 대화기록 가져오기
         const state = getState();
         const previousMessages = state.message.messages;
@@ -96,9 +91,6 @@ export const fetchMessagesThunk = (values, date) => {
 
           //transaction.update(docRef, { [day]: response });
         }
-
-        console.groupEnd();
-      });
     } catch (error) {
       dispatch(fetchMessagesLoading(false));
       dispatch(setMessageAction(backupMessages));
