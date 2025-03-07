@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RouteCard from "../../ui/common/RouteCard";
-import Spacing from "../../ui/common/Spacing";
 
 // Styled Components
 const PageContainer = styled.div`
@@ -10,7 +9,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 750px;
   background: linear-gradient(135deg, #e9d5ff, #fef3c7);
   padding: 40px 20px;
 `;
@@ -94,7 +93,6 @@ const HomePage = () => {
 
   return (
     <PageContainer>
-            <Spacing top={"200px"} />
       <HomePageCard>
         <Title>Emotion Diary</Title>
         <Description>
@@ -128,7 +126,6 @@ const HomePage = () => {
           </Button>
         </CardContainer>
       )}
-      <Spacing top={"200px"} />
     </PageContainer>
   );
 };
