@@ -20,7 +20,8 @@ const requestDateMessageAction = (email, today) => {
     */
     dispatch(getMessagesLoading(true));
     //오늘 대화 기록 가져오기
-    getConversationApi(email, today).then((response) => {
+    const token = localStorage.getItem("token");
+    getConversationApi(email, today, token).then((response) => {
       const messages = combineConversationByRoles(response.userConversation, response.assistantConversation);
       dispatch(setMessageAction(messages));
     })

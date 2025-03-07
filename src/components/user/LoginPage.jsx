@@ -94,7 +94,7 @@ const LoginPage = () => {
         navigate("/home");
       } else {
         navigate("/login");
-        setEmail("");
+        setPassword("");
       }
     },
     [email, password, navigate]

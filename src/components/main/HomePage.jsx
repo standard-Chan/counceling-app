@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RouteCard from "../../ui/common/RouteCard";
+import Spacing from "../../ui/common/Spacing";
 
 // Styled Components
 const PageContainer = styled.div`
@@ -92,6 +93,7 @@ const HomePage = () => {
 
   return (
     <PageContainer>
+            <Spacing top={"200px"} />
       <HomePageCard>
         <Title>Emotion Diary</Title>
         <Description>
@@ -125,6 +127,7 @@ const HomePage = () => {
           </Button>
         </CardContainer>
       )}
+      <Spacing top={"200px"} />
     </PageContainer>
   );
 };
