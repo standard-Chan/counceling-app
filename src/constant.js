@@ -7,5 +7,5 @@ export const parsingSep = "|";
 export const parsingSepEnd = '<END>';
 
 // API URL
-export const ApiUrl = "http://43.201.244.176/api";
+export const ApiUrl = process.env.API_URL;
 

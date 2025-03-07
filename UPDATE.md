@@ -41,3 +41,11 @@
   - 1.25 : UI 변경
     - [x] calendar 대화 결과가 없는 일자 회색 처리
     - [x] chat Input 텍스트 바 width를 채팅 bubble에 맞게 변경
+
+  - 3.5 - 3.6 : api변경
+    - [x] firebase 서버에서 spring boot api서버로 변경
+      - [x] login, signup, 대화 불러오기, 대화 저장하기 등 구현
+
+  - 3.7 : 페이지 디자인 및 배포 테스트, 버그 수정
+    - [x] 로그인페이지 및 회원가입 페이지 디자인
+    - [x] 배포 테스트 및 버그 수정

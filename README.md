@@ -11,8 +11,6 @@
   <img src="./public/img/detail.png" alt="기록" height="300">
   이유와 조언
 
-  ### 심리 상담
-
 ## 정리
 - [LEARN.md](./LEARN.md)
 - [UPDATE.md](./UPDATE.md)
