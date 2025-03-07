@@ -65,10 +65,10 @@ export const fetchMessagesThunk = (values, date) => {
 
           // ---
 
-          console.log("마지막 대화입니다.");
+          //console.log("마지막 대화입니다.");
 
           const response = await gptApi(gptEmotionRequestPayload).then((response) => JSON.parse(response.choices[0].message.content)); // 대화 감정 추측 결과
-          console.log(response);
+          //console.log(response);
           
           const emotions = [response.emotion1.emotion, response.emotion2.emotion];
           const reasons = [response.emotion1.reason, response.emotion2.reason];

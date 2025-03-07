@@ -17,7 +17,7 @@ const requestCalendarAction = (date) => {
         emotionsInDay[day] = item;
         return emotionsInDay;
     }, {});
-    console.log(emotionsInMonth);
+    //console.log(emotionsInMonth);
     dispatch(setCalendarAction(emotionsInMonth));
     });
   };

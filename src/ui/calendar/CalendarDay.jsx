@@ -10,7 +10,7 @@ const DayContainer = styled.div`
   justify-content: center;
   height: 60px;
   background-color: ${(props) => (props.istoday ? "#f0c8ff" : "#e6d5f5")};
-  background-color: ${(props) => (props.noTalk ? "#f1eaf8" : "#e6d5f5")};
+  background-color: ${(props) => (props.notalk ? "#f1eaf8" : "#e6d5f5")};
   color: #5c4776;
   font-size: 13px;
   font-weight: bold;
@@ -45,19 +45,19 @@ const Content = styled.div`
 `;
 
 const CalendarDay = ({dayInfo}) => {
-  const [isToday, setIsToday] = useState(false);
-  const [noData, setNoData] = useState(false);
+  const [isToday, setIsToday] = useState("");// false 대신 ""로 초기화
+  const [noData, setNoData] = useState("");// false 대신 ""로 초기화 (DOM 에러 방지)
   const { emotions, scores } = dayInfo["details"];
   // dayInfo 출력
   // console.log('dayInfo : ', dayInfo);
   useEffect(() => {
     const today = getTodayInDateFormat();
-    setIsToday(today === dayInfo.date);
+    setIsToday(today === dayInfo.date ? "true" : "");
   }, [dayInfo.date]);
 
   useEffect(() => {
     if(emotions[0] === ''){
-      setNoData(true);
+      setNoData("true");
     }
   }, [emotions]);
 
@@ -67,7 +67,7 @@ const CalendarDay = ({dayInfo}) => {
         <DayContainer
           onClick={() => openModal(dayInfo.date, dayInfo)}
           istoday={isToday}
-          noTalk={noData}
+          notalk={noData}
         >
           <Label>{dayInfo.label}</Label>
           <Content>

@@ -39,7 +39,7 @@ const Description = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: ${(props) => props.bgColor || "#8b5cf6"};
+  background-color: ${(props) => props.bgcolor || "#8b5cf6"};
   color: white;
   padding: 14px 28px;
   border: none;
@@ -51,7 +51,7 @@ const Button = styled.button`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: ${(props) => props.hoverColor || "#6d28d9"};
+    background-color: ${(props) => props.hovercolor || "#6d28d9"};
     transform: translateY(-2px);
   }
 `;
@@ -102,7 +102,7 @@ const HomePage = () => {
         {!isAuthenticated && (
           <ButtonGroup>
             <Button onClick={() => navigate("/login")}>로그인</Button>
-            <Button onClick={() => navigate("/signup")} bgColor="#4caf50" hoverColor="#388e3c">
+            <Button onClick={() => navigate("/signup")} bgcolor="#4caf50" hovercolor="#388e3c">
               회원가입
             </Button>
           </ButtonGroup>
@@ -122,7 +122,7 @@ const HomePage = () => {
             path="/info"
             btn="나의 정보"
           />
-          <Button onClick={handleLogout} bgColor="#ff6b6b" hoverColor="#d94343">
+          <Button onClick={handleLogout} bgcolor="#ff6b6b" hovercolor="#d94343">
             로그아웃
           </Button>
         </CardContainer>

@@ -1,7 +1,8 @@
+import { ApiUrl } from "../../constant";
 
 // 대화(user, assistant) 저장 API
 export const postConversationApi = async (userEmail, date, userMessage, assistantMessage, token) => {
-  const response = fetch("http://localhost:8080/api/emotion/conversation", {
+  const response = fetch(`${ApiUrl}/emotion/conversation`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +32,7 @@ export const postConversationApi = async (userEmail, date, userMessage, assistan
 
 // 대화 불러오기 API
 export const getConversationApi = async (email, date, token) => {
-  const response = fetch(`http://localhost:8080/api/emotion/conversation?email=${email}&date=${date}`, {
+  const response = fetch(`${ApiUrl}/emotion/conversation?email=${email}&date=${date}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

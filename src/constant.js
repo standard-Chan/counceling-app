@@ -7,4 +7,5 @@ export const parsingSep = "|";
 export const parsingSepEnd = '<END>';
 
 // API URL
-export const ApiUrl = "http://localhost:8080/api";
+export const ApiUrl = "http://43.201.244.176/api";
+
