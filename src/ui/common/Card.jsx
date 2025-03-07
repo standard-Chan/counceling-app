@@ -10,7 +10,6 @@ const StyledCard = styled.div`
   padding: ${props => props.padding || '20px'};
   margin: ${props => props.margin || '0px'};
   transition: box-shadow 0.3s ease;
-  flex-direction: column;
 
   &:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);

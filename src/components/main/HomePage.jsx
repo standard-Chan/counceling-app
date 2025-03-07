@@ -23,6 +23,7 @@ const HomePageCard = styled.div`
   text-align: center;
   max-width: 500px;
   width: 100%;
+  margin-top: 20px;
 `;
 
 const Title = styled.h1`
